@@ -143,7 +143,6 @@
     position: absolute; inset: 0; opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232D5E34' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  /* Floating leaf decorations */
   .hero-leaf {
     position: absolute;
     opacity: 0.06;
@@ -231,7 +230,6 @@
     animation: scrollAnim 2s ease-in-out infinite;
   }
   @keyframes scrollAnim { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} 100%{opacity:0;transform:scaleY(0);transform-origin:bottom} }
-
   @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
 
   /* ─── STATS BAR ─── */
@@ -959,11 +957,8 @@
 </head>
 <body>
 
-<!-- Custom cursor -->
-<!-- ─── SCROLL TO TOP ─── -->
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">▲</button>
 
-<!-- ─── LANGUAGE SWITCHER ─── -->
 <div class="lang-switcher">
   <div class="lang-options" id="langOptions">
     <button class="lang-option active" onclick="setLang('es')">🇪🇸 Español</button>
@@ -977,16 +972,14 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- WhatsApp Float -->
 <a class="whatsapp-float" href="https://wa.me/34637064533?text=Hola%20Grace%20Weed%20Club%2C%20me%20gustar%C3%ADa%20unirme%20al%20club." target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<!-- ─── NAVIGATION ─── -->
 <nav id="mainNav">
   <a href="#" class="nav-logo">
-    <div class="logo-leaf">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 6 5.5 6 9c0 2.5 1 4.7 2.5 6.2l-.5 6.8h8l-.5-6.8C17 13.7 18 11.5 18 9c0-3.5-2.5-7-6-7z"/></svg>
+    <div class="logo-leaf" style="background:none;box-shadow:none;overflow:hidden;">
+      <img src="https://i.imgur.com/z4p8tIm.jpeg" alt="Grace Weed Club Logo" style="width:42px;height:42px;object-fit:cover;border-radius:50% 5px 50% 5px;">
     </div>
     <div class="logo-text">
       <strong>Grace Weed Club</strong>
@@ -1007,7 +1000,6 @@
   </button>
 </nav>
 
-<!-- ─── HERO ─── -->
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
@@ -1039,7 +1031,6 @@
   </div>
 </section>
 
-<!-- ─── STATS ─── -->
 <div class="stats-bar reveal">
   <div class="stat-item">
     <span class="stat-num" data-target="4541">0</span>
@@ -1059,7 +1050,6 @@
   </div>
 </div>
 
-<!-- ─── ABOUT ─── -->
 <section class="about" id="about">
   <div class="about-img reveal">
     <img src="https://i.imgur.com/iBJPs2I.jpg" alt="Grace Weed Club interior">
@@ -1111,7 +1101,6 @@
   </div>
 </section>
 
-<!-- ─── PILLARS ─── -->
 <section class="pillars" id="pillars">
   <div class="pillars-header reveal">
     <div class="section-tag">Nuestros pilares</div>
@@ -1136,7 +1125,7 @@
   </div>
 </section>
 
-<!-- ─── GALLERY ─── -->
+<!-- ─── GALLERY (5 items, Xem7zBx eliminado) ─── -->
 <section class="gallery" id="gallery">
   <div class="gallery-header reveal">
     <div class="section-tag">Galería</div>
@@ -1151,19 +1140,12 @@
       <img src="https://i.imgur.com/bG6u7UQ.jpg" alt="Grace Weed Club" loading="lazy">
       <div class="gallery-item-overlay"><span>Ambiente exclusivo</span></div>
     </div>
+
     <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(2)">
-      <img src="https://i.imgur.com/Xem7zBx.jpg" alt="Grace Club productos" loading="lazy">
-      <div class="gallery-item-overlay"><span>Selección premium</span></div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(3)">
-      <img src="https://i.imgur.com/UZTWI2r.png" alt="Grace Club espacio" loading="lazy">
-      <div class="gallery-item-overlay"><span>Nuestro espacio</span></div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(4)">
       <img src="https://i.imgur.com/elzOpot.png" alt="Grace Club comunidad" loading="lazy">
       <div class="gallery-item-overlay"><span>Comunidad Grace</span></div>
     </div>
-    <div class="gallery-item reveal reveal-delay-3" onclick="openLightbox(5)">
+    <div class="gallery-item reveal reveal-delay-3" onclick="openLightbox(3)">
       <img src="https://i.imgur.com/t0u1SLJ.png" alt="Grace Club Ibiza 2025" loading="lazy">
       <div class="gallery-item-overlay"><span>Ibiza 2025</span></div>
     </div>
@@ -1175,7 +1157,6 @@
   </div>
 </section>
 
-<!-- ─── LIGHTBOX ─── -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <button class="lightbox-prev" onclick="event.stopPropagation();changeLightbox(-1)">‹</button>
@@ -1183,7 +1164,6 @@
   <button class="lightbox-next" onclick="event.stopPropagation();changeLightbox(1)">›</button>
 </div>
 
-<!-- ─── EXPERIENCE ─── -->
 <section class="experience" id="experience">
   <div class="section-tag reveal">Experiencia</div>
   <h2 class="section-title reveal reveal-delay-1">Así es tu <em>experiencia</em><br>en <span style="color:var(--gold-light)">Grace Club</span></h2>
@@ -1229,12 +1209,10 @@
   </div>
 </section>
 
-<!-- ─── REVIEWS ─── -->
 <section class="reviews" id="reviews">
   <div class="section-tag reveal">Comunidad</div>
   <h2 class="section-title reveal reveal-delay-1">Lo que dicen<br>nuestros <em>miembros</em></h2>
 
-  <!-- Club photo + Google rating card -->
   <div class="reviews-hero reveal reveal-delay-1">
     <div class="reviews-hero-img">
       <img src="https://i.imgur.com/iBJPs2I.jpg" alt="Grace Weed Club Ibiza">
@@ -1300,7 +1278,6 @@
   </div>
 </section>
 
-<!-- ─── CONTACT FORM ─── -->
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="adult-badge">🔞 Solo mayores de 18 años · Asociación privada</div>
@@ -1361,7 +1338,6 @@
   </div>
 </section>
 
-<!-- ─── LOCATION ─── -->
 <section class="location" id="location" style="padding:0">
   <div class="location-info">
     <div class="section-tag reveal">Encuéntranos</div>
@@ -1399,20 +1375,18 @@
   </div>
 </section>
 
-<!-- ─── CTA ─── -->
 <div class="cta-strip reveal">
   <h2>¿Listo para unirte a<br><em>Grace Weed Club</em>?</h2>
   <p>Escríbenos por WhatsApp y resuelve todas tus dudas. Acceso rápido, fácil y discreto.</p>
   <a class="btn-dark" href="https://wa.me/34637064533?text=Hola%20Grace%20Weed%20Club%2C%20quiero%20información%20sobre%20la%20membresía." target="_blank">💬 Contáctanos por WhatsApp</a>
 </div>
 
-<!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
       <div class="nav-logo" style="margin-bottom:4px">
-        <div class="logo-leaf" style="background:linear-gradient(135deg,#4A8C53,#2D5E34)">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.5 2 6 5.5 6 9c0 2.5 1 4.7 2.5 6.2l-.5 6.8h8l-.5-6.8C17 13.7 18 11.5 18 9c0-3.5-2.5-7-6-7z" fill="white"/></svg>
+        <div class="logo-leaf" style="background:none;box-shadow:none;overflow:hidden;">
+          <img src="https://i.imgur.com/z4p8tIm.jpeg" alt="Grace Weed Club Logo" style="width:42px;height:42px;object-fit:cover;border-radius:50% 5px 50% 5px;">
         </div>
         <div class="logo-text">
           <strong>Grace Weed Club</strong>
@@ -1466,7 +1440,6 @@
 </footer>
 
 <script>
-  // ─── Cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
   document.addEventListener('mousemove', e => {
@@ -1478,12 +1451,10 @@
     }, 60);
   });
 
-  // ─── Lightbox
+  // ─── Lightbox (5 imágenes, Xem7zBx eliminada)
   const galleryImgs = [
     'https://i.imgur.com/iBJPs2I.jpeg',
     'https://i.imgur.com/bG6u7UQ.jpg',
-    'https://i.imgur.com/Xem7zBx.jpg',
-    'https://i.imgur.com/UZTWI2r.png',
     'https://i.imgur.com/elzOpot.png',
     'https://i.imgur.com/t0u1SLJ.png'
   ];
@@ -1512,19 +1483,16 @@
     }
   });
 
-  // ─── Nav scroll
   const nav = document.getElementById('mainNav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // ─── Mobile burger
   const burger = document.getElementById('burger');
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
   navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-  // ─── Counter animation
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
     const duration = 1800;
@@ -1540,7 +1508,6 @@
     }, 16);
   }
 
-  // ─── Scroll reveal + counter trigger
   const revealEls = document.querySelectorAll('.reveal');
   const counters = document.querySelectorAll('.stat-num');
   let countersTriggered = false;
@@ -1566,7 +1533,6 @@
   const statsBar = document.querySelector('.stats-bar');
   if (statsBar) statsObserver.observe(statsBar);
 
-  // ─── Form submit
   function submitForm() {
     const name = document.getElementById('fname').value;
     const email = document.getElementById('email').value;
@@ -1575,7 +1541,6 @@
       alert('Por favor, rellena los campos obligatorios (nombre, email y fecha de nacimiento).');
       return;
     }
-    // Age check
     const birthDate = new Date(dob);
     const age = Math.floor((new Date() - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
     if (age < 18) {
@@ -1585,18 +1550,15 @@
     document.getElementById('contactForm').style.display = 'none';
     document.querySelector('.form-submit').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
-    // Redirect to WhatsApp
     const msg = encodeURIComponent(`Hola Grace Weed Club, soy ${name} y quiero información sobre la membresía.`);
     setTimeout(() => window.open(`https://wa.me/34637064533?text=${msg}`, '_blank'), 800);
   }
 
-  // ─── Scroll to top button
   const scrollTopBtn = document.getElementById('scrollTop');
   window.addEventListener('scroll', () => {
     scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
   });
 
-  // ─── Language switcher
   let langOpen = false;
   function toggleLang() {
     langOpen = !langOpen;
@@ -1617,7 +1579,7 @@
       heroBadge: 'Club Privado · 4.541 Reseñas ⭐',
       heroH1: 'Bienvenido a<br><em>Grace</em> <span class="gold">Weed</span> Club',
       heroSub: 'La asociación cannábica de referencia en Ibiza. Productos de alta gama, ambiente sofisticado y una comunidad exclusiva en el corazón de Platja d\'en Bossa.',
-      heroBtn1: '🌿 Solicitar Membresía', heroBtn2: 'Descubrir más',
+      heroBtn1: 'Solicitar Membresía', heroBtn2: 'Descubrir más',
       statL1:'Reseñas Google', statL2:'Miembros activos', statL3:'Variedades premium', statL4:'Días al año',
       aboutTag:'Quiénes somos',
       aboutTitle:'El lado más <em>sofisticado</em><br>del cannabis en Ibiza',
@@ -1654,15 +1616,15 @@
       heroBadge:'Private Club · 4,541 Reviews ⭐',
       heroH1:'Welcome to<br><em>Grace</em> <span class="gold">Weed</span> Club',
       heroSub:'The reference cannabis association in Ibiza. Premium products, sophisticated atmosphere and an exclusive community at the heart of Platja d\'en Bossa.',
-      heroBtn1:'🌿 Request Membership', heroBtn2:'Discover more',
+      heroBtn1:'Request Membership', heroBtn2:'Discover more',
       statL1:'Google Reviews', statL2:'Active members', statL3:'Premium strains', statL4:'Days a year',
       aboutTag:'Who we are',
       aboutTitle:'The most <em>sophisticated</em><br>side of cannabis in Ibiza',
       aboutP1:'Located in Platja d\'en Bossa, Grace Club 2.0 offers a top-tier cannabis experience. As a cannabis association in Ibiza, we provide premium products in a warm, safe environment.',
       aboutP2:'Join our community and enjoy personalised advice, exclusive events and a space where quality is always the priority.',
       pilTag:'Our pillars', pilTitle:'<em>Quality, Location</em><br>and Great Atmosphere',
-      pil1T:'Quality', pil1P:'Everything is hand-picked by a team of experts to ensure the highest standards. Only the best reaches our members.',
-      pil2T:'Location', pil2P:'Perfectly situated on Carrer Pablo Picasso, in the heart of Eivissa, close to everything that makes Ibiza unique.',
+      pil1T:'Quality', pil1P:'Everything is hand-picked by a team of experts to ensure the highest standards.',
+      pil2T:'Location', pil2P:'Perfectly situated on Carrer Pablo Picasso, in the heart of Eivissa.',
       pil3T:'Atmosphere', pil3P:'Ibiza has one of the most vibrant atmospheres in the world. We recreate that spirit in our community.',
       galTag:'Gallery', galTitle:'Live the <em>experience</em><br>Grace Club', galIG:'📸 Follow us on Instagram @clubgrace2.0ibiza',
       expTag:'Experience', expTitle:'Your <em>experience</em><br>at <span style="color:var(--gold-light)">Grace Club</span>',
@@ -1691,15 +1653,15 @@
       heroBadge:'Club Privato · 4.541 Recensioni ⭐',
       heroH1:'Benvenuto a<br><em>Grace</em> <span class="gold">Weed</span> Club',
       heroSub:'L\'associazione cannabis di riferimento a Ibiza. Prodotti premium, atmosfera sofisticata e una comunità esclusiva nel cuore di Platja d\'en Bossa.',
-      heroBtn1:'🌿 Richiedi Iscrizione', heroBtn2:'Scopri di più',
+      heroBtn1:'Richiedi Iscrizione', heroBtn2:'Scopri di più',
       statL1:'Recensioni Google', statL2:'Membri attivi', statL3:'Varietà premium', statL4:'Giorni all\'anno',
       aboutTag:'Chi siamo',
       aboutTitle:'Il lato più <em>sofisticato</em><br>della cannabis a Ibiza',
-      aboutP1:'Situato a Platja d\'en Bossa, Grace Club 2.0 offre un\'esperienza cannabis di primo livello. Come associazione cannabis a Ibiza, forniamo prodotti di alta qualità in un ambiente caldo e sicuro.',
+      aboutP1:'Situato a Platja d\'en Bossa, Grace Club 2.0 offre un\'esperienza cannabis di primo livello.',
       aboutP2:'Unisciti alla nostra comunità e goditi consulenza personalizzata, eventi esclusivi e uno spazio dove la qualità è sempre la priorità.',
       pilTag:'I nostri pilastri', pilTitle:'<em>Qualità, Posizione</em><br>e Grande Atmosfera',
-      pil1T:'Qualità', pil1P:'Tutto viene selezionato a mano da esperti per garantire i più alti standard. Solo il meglio arriva ai nostri membri.',
-      pil2T:'Posizione', pil2P:'Perfettamente situato in Carrer Pablo Picasso, nel cuore di Eivissa, vicino a tutto ciò che rende unica Ibiza.',
+      pil1T:'Qualità', pil1P:'Tutto viene selezionato a mano da esperti per garantire i più alti standard.',
+      pil2T:'Posizione', pil2P:'Perfettamente situato in Carrer Pablo Picasso nel cuore di Eivissa.',
       pil3T:'Atmosfera', pil3P:'Ibiza ha una delle atmosfere più vibranti del mondo. Riproduciamo quello spirito nella nostra comunità.',
       galTag:'Galleria', galTitle:'Vivi l\'<em>esperienza</em><br>Grace Club', galIG:'📸 Seguici su Instagram @clubgrace2.0ibiza',
       expTag:'Esperienza', expTitle:'La tua <em>esperienza</em><br>al <span style="color:var(--gold-light)">Grace Club</span>',
@@ -1709,9 +1671,9 @@
       exp4T:'Goditi e connettiti', exp4P:'Uno spazio unico per rilassarsi e vivere eventi esclusivi.',
       revTag:'Comunità', revTitle:'Cosa dicono<br>i nostri <em>membri</em>',
       revSub:'4.5 · Oltre 4.541 recensioni su Google',
-      rev1:'"Senza dubbio il miglior club cannabis di Ibiza. Il personale è incredibilmente gentile e la selezione di prodotti è eccellente."',
-      rev2:'"Atmosfera esclusiva e rilassata. L\'attenzione personalizzata che ho ricevuto è stata eccezionale."',
-      rev3:'"Grace Club è un posto speciale. Qualità top, totale discrezione e un team che ti fa sentire il benvenuto."',
+      rev1:'"Senza dubbio il miglior club cannabis di Ibiza."',
+      rev2:'"Atmosfera esclusiva e rilassata. L\'attenzione personalizzata è stata eccezionale."',
+      rev3:'"Grace Club è un posto speciale. Qualità top, totale discrezione."',
       ctaJoin:'Unisciti al club',
       contactTag:'Unisciti al club', contactTitle:'Richiedi la tua <em>iscrizione</em>',
       contactSub:'Compila il modulo e il nostro team ti contatterà per completare la registrazione.',
@@ -1728,15 +1690,15 @@
       heroBadge:'Club Privé · 4 541 Avis ⭐',
       heroH1:'Bienvenue au<br><em>Grace</em> <span class="gold">Weed</span> Club',
       heroSub:'L\'association cannabis de référence à Ibiza. Produits haut de gamme, ambiance sophistiquée et communauté exclusive au cœur de Platja d\'en Bossa.',
-      heroBtn1:'🌿 Demander une adhésion', heroBtn2:'En savoir plus',
+      heroBtn1:'Demander une adhésion', heroBtn2:'En savoir plus',
       statL1:'Avis Google', statL2:'Membres actifs', statL3:'Variétés premium', statL4:'Jours par an',
       aboutTag:'Qui sommes-nous',
       aboutTitle:'Le côté le plus <em>sophistiqué</em><br>du cannabis à Ibiza',
-      aboutP1:'Situé à Platja d\'en Bossa, Grace Club 2.0 offre une expérience cannabis de premier plan. En tant qu\'association cannabis à Ibiza, nous proposons des produits haut de gamme dans un environnement chaleureux et sûr.',
+      aboutP1:'Situé à Platja d\'en Bossa, Grace Club 2.0 offre une expérience cannabis de premier plan.',
       aboutP2:'Rejoignez notre communauté et profitez de conseils personnalisés, d\'événements exclusifs et d\'un espace où la qualité est toujours la priorité.',
       pilTag:'Nos piliers', pilTitle:'<em>Qualité, Emplacement</em><br>et Bonne Ambiance',
-      pil1T:'Qualité', pil1P:'Tout est sélectionné à la main par une équipe d\'experts pour garantir les plus hauts standards. Seul le meilleur arrive à nos membres.',
-      pil2T:'Emplacement', pil2P:'Parfaitement situé sur Carrer Pablo Picasso, au cœur d\'Eivissa, près de tout ce qui rend Ibiza unique.',
+      pil1T:'Qualité', pil1P:'Tout est sélectionné à la main par une équipe d\'experts pour garantir les plus hauts standards.',
+      pil2T:'Emplacement', pil2P:'Parfaitement situé sur Carrer Pablo Picasso, au cœur d\'Eivissa.',
       pil3T:'Ambiance', pil3P:'Ibiza a l\'une des ambiances les plus vibrantes du monde. Nous recréons cet esprit dans notre communauté.',
       galTag:'Galerie', galTitle:'Vivez l\'<em>expérience</em><br>Grace Club', galIG:'📸 Suivez-nous sur Instagram @clubgrace2.0ibiza',
       expTag:'Expérience', expTitle:'Votre <em>expérience</em><br>au <span style="color:var(--gold-light)">Grace Club</span>',
@@ -1746,9 +1708,9 @@
       exp4T:'Profitez et connectez-vous', exp4P:'Un espace unique pour se détendre et vivre des événements exclusifs.',
       revTag:'Communauté', revTitle:'Ce que disent<br>nos <em>membres</em>',
       revSub:'4.5 · Plus de 4 541 avis Google',
-      rev1:'"Sans aucun doute le meilleur club cannabis d\'Ibiza. Le personnel est incroyablement aimable et la sélection de produits est excellente."',
-      rev2:'"Atmosphère exclusive et détendue. L\'attention personnalisée que j\'ai reçue était exceptionnelle."',
-      rev3:'"Grace Club est un endroit spécial. Qualité top, discrétion totale et une équipe qui vous fait sentir bienvenu."',
+      rev1:'"Sans aucun doute le meilleur club cannabis d\'Ibiza."',
+      rev2:'"Atmosphère exclusive et détendue. L\'attention personnalisée était exceptionnelle."',
+      rev3:'"Grace Club est un endroit spécial. Qualité top, discrétion totale."',
       ctaJoin:'Rejoindre le club',
       contactTag:'Rejoindre le club', contactTitle:'Demandez votre <em>adhésion</em>',
       contactSub:'Remplissez le formulaire et notre équipe vous contactera pour finaliser votre inscription.',
@@ -1765,16 +1727,16 @@
       heroBadge:'نادي خاص · 4,541 تقييم ⭐',
       heroH1:'مرحباً بك في<br><em>Grace</em> <span class="gold">Weed</span> Club',
       heroSub:'جمعية القنب المرجعية في إيبيزا. منتجات فاخرة، أجواء راقية ومجتمع حصري في قلب Platja d\'en Bossa.',
-      heroBtn1:'🌿 طلب العضوية', heroBtn2:'اكتشف المزيد',
+      heroBtn1:'طلب العضوية', heroBtn2:'اكتشف المزيد',
       statL1:'تقييمات جوجل', statL2:'أعضاء نشطون', statL3:'أصناف مميزة', statL4:'أيام في السنة',
       aboutTag:'من نحن',
       aboutTitle:'الجانب الأكثر <em>رقياً</em><br>للقنب في إيبيزا',
-      aboutP1:'يقع Grace Club 2.0 في Platja d\'en Bossa ويقدم تجربة قنب من الدرجة الأولى. كجمعية قنب في إيبيزا، نقدم منتجات فاخرة في بيئة دافئة وآمنة.',
-      aboutP2:'انضم إلى مجتمعنا واستمتع بالاستشارة الشخصية والفعاليات الحصرية ومساحة حيث الجودة هي الأولوية دائماً.',
+      aboutP1:'يقع Grace Club 2.0 في Platja d\'en Bossa ويقدم تجربة قنب من الدرجة الأولى.',
+      aboutP2:'انضم إلى مجتمعنا واستمتع بالاستشارة الشخصية والفعاليات الحصرية.',
       pilTag:'ركائزنا', pilTitle:'<em>الجودة، الموقع</em><br>والأجواء الرائعة',
       pil1T:'الجودة', pil1P:'كل شيء يتم اختياره يدوياً من قبل فريق من الخبراء لضمان أعلى المعايير.',
       pil2T:'الموقع', pil2P:'موقع مثالي في Carrer Pablo Picasso في قلب إيبيسا.',
-      pil3T:'الأجواء', pil3P:'إيبيزا لديها واحدة من أكثر الأجواء حيوية في العالم. نعيد إنتاج ذلك الروح في مجتمعنا.',
+      pil3T:'الأجواء', pil3P:'إيبيزا لديها واحدة من أكثر الأجواء حيوية في العالم.',
       galTag:'معرض الصور', galTitle:'عِش <em>تجربة</em><br>Grace Club', galIG:'📸 تابعنا على انستغرام @clubgrace2.0ibiza',
       expTag:'التجربة', expTitle:'تجربتك في<br><em>Grace Club</em>',
       exp1T:'اطلب عضويتك', exp1P:'املأ النموذج أو تواصل معنا عبر واتساب.',
@@ -1783,9 +1745,9 @@
       exp4T:'استمتع وتواصل', exp4P:'مساحة فريدة للاسترخاء وحضور الفعاليات الحصرية.',
       revTag:'المجتمع', revTitle:'ما يقوله<br><em>أعضاؤنا</em>',
       revSub:'4.5 · أكثر من 4,541 تقييم على جوجل',
-      rev1:'"بلا شك أفضل نادي قنب في إيبيزا. الطاقم ودود للغاية وتشكيلة المنتجات استثنائية."',
-      rev2:'"أجواء حصرية ومريحة. الاهتمام الشخصي الذي تلقيته كان استثنائياً."',
-      rev3:'"Grace Club مكان مميز. جودة عالية، تكتم تام وفريق يجعلك تشعر بالترحيب."',
+      rev1:'"بلا شك أفضل نادي قنب في إيبيزا."',
+      rev2:'"أجواء حصرية ومريحة. الاهتمام الشخصي كان استثنائياً."',
+      rev3:'"Grace Club مكان مميز. جودة عالية، تكتم تام."',
       ctaJoin:'انضم للنادي',
       contactTag:'انضم للنادي', contactTitle:'اطلب <em>عضويتك</em>',
       contactSub:'املأ النموذج وسيتصل بك فريقنا لإتمام التسجيل.',
@@ -1805,12 +1767,10 @@
     document.documentElement.dir = t.dir;
     document.documentElement.lang = lang;
 
-    // Nav
     const navLis = document.querySelectorAll('#navLinks li a');
     const navKeys = ['navAbout','navExp','navGallery','navReviews','navLocation','navIG','navJoin'];
     navLis.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
 
-    // Hero
     document.querySelector('.hero-badge').innerHTML = t.heroBadge;
     document.querySelector('.hero h1').innerHTML = t.heroH1;
     document.querySelector('.hero-sub').textContent = t.heroSub;
@@ -1818,11 +1778,9 @@
     if (heroBtns[0]) heroBtns[0].innerHTML = t.heroBtn1;
     if (heroBtns[1]) heroBtns[1].textContent = t.heroBtn2;
 
-    // Stats labels
     const statLabels = document.querySelectorAll('.stat-label');
     [t.statL1,t.statL2,t.statL3,t.statL4].forEach((l,i) => { if(statLabels[i]) statLabels[i].textContent = l; });
 
-    // About
     const aboutTag = document.querySelector('.about .section-tag');
     if(aboutTag) aboutTag.innerHTML = aboutTag.innerHTML.replace(/[^─\s].+/, t.aboutTag);
     const aboutTitle = document.querySelector('.about .section-title');
@@ -1831,7 +1789,6 @@
     if(aboutPs[0]) aboutPs[0].textContent = t.aboutP1;
     if(aboutPs[1]) aboutPs[1].textContent = t.aboutP2;
 
-    // Pillars
     const pilTag = document.querySelector('.pillars .section-tag');
     if(pilTag) pilTag.innerHTML = pilTag.innerHTML.replace(/\S.+/, t.pilTag);
     const pilTitle = document.querySelector('.pillars .section-title');
@@ -1843,7 +1800,6 @@
       if(pilPs[i]) pilPs[i].textContent = p;
     });
 
-    // Gallery
     const galTag = document.querySelector('.gallery .section-tag');
     if(galTag) galTag.innerHTML = galTag.innerHTML.replace(/\S.+/, t.galTag);
     const galTitle = document.querySelector('.gallery .section-title');
@@ -1851,7 +1807,6 @@
     const galIG = document.querySelector('.gallery-ig');
     if(galIG) galIG.textContent = t.galIG;
 
-    // Experience
     const expTag = document.querySelector('.experience .section-tag');
     if(expTag) expTag.innerHTML = expTag.innerHTML.replace(/\S.+/, t.expTag);
     const expTitle = document.querySelector('.experience .section-title');
@@ -1863,7 +1818,6 @@
       if(expPPs[i]) expPPs[i].textContent = p;
     });
 
-    // Reviews
     const revTag = document.querySelector('.reviews .section-tag');
     if(revTag) revTag.textContent = t.revTag;
     const revTitle = document.querySelector('.reviews .section-title');
@@ -1875,7 +1829,6 @@
     const rgcCta = document.querySelector('.rgc-cta');
     if(rgcCta) rgcCta.textContent = t.ctaJoin;
 
-    // Contact
     const contactTag = document.querySelector('.contact .section-tag');
     if(contactTag) contactTag.innerHTML = contactTag.innerHTML.replace(/\S.+/, t.contactTag);
     const contactTitle = document.querySelector('.contact .section-title');
@@ -1883,7 +1836,6 @@
     const contactSub = document.querySelector('.contact-inner > p');
     if(contactSub) contactSub.textContent = t.contactSub;
 
-    // Location
     const locTag = document.querySelector('.location-info .section-tag');
     if(locTag) locTag.innerHTML = locTag.innerHTML.replace(/\S.+/, t.locTag);
     const locTitle = document.querySelector('.location-info .section-title');
@@ -1893,7 +1845,6 @@
     if(hoursRow) hoursRow.textContent = t.hours.split('·')[0].trim();
     if(hoursVal) hoursVal.textContent = t.hours.split('·')[1].trim();
 
-    // CTA strip
     const ctaH = document.querySelector('.cta-strip h2');
     if(ctaH) ctaH.innerHTML = t.ctaH;
     const ctaP = document.querySelector('.cta-strip p');
@@ -1901,12 +1852,10 @@
     const ctaBtn = document.querySelector('.btn-dark');
     if(ctaBtn) ctaBtn.textContent = t.ctaBtn;
 
-    // Update active button
     document.querySelectorAll('.lang-option').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
     });
 
-    // Close menu
     langOpen = false;
     document.getElementById('langOptions').classList.remove('open');
   }
