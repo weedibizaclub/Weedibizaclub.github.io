@@ -1,1864 +1,1187 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grace Weed Club – Cannabis Social Club Ibiza</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>The Garden Ibiza – Cannabis Social Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@300;400;500&family=Noto+Sans+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --white: #F8FAF6;
-    --off-white: #EEF3EB;
-    --green-deep: #1A3A1F;
-    --green-mid: #2D5E34;
-    --green-light: #4A8C53;
-    --green-pale: #A8C9A1;
-    --green-mint: #C8E6C0;
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --charcoal: #1C1C1C;
-    --text-muted: #5A6B57;
+    --green-deep:   #0d1f0e;
+    --green-dark:   #142b15;
+    --green-mid:    #1e4620;
+    --green-light:  #2d6b30;
+    --green-accent: #3a8c3e;
+    --gold:         #c9a84c;
+    --gold-light:   #e0c070;
+    --gold-pale:    #f0dfa0;
+    --cream:        #f5f0e8;
+    --white:        #ffffff;
+    --text-muted:   #a0b09a;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Outfit', sans-serif;
-    background: var(--white);
-    color: var(--charcoal);
+    background: var(--green-deep);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
     overflow-x: hidden;
+    cursor: none;
+    transition: font-family .3s;
   }
+  html[lang="ar"] body { font-family: 'Noto Sans Arabic', sans-serif; }
+  html[dir="rtl"] * { direction: rtl; }
 
-  /* ─── CURSOR ─── */
-  * { cursor: none; }
-  .cursor {
-    width: 10px; height: 10px;
-    background: var(--green-mid);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9999;
+  /* ── CURSOR ── */
+  .cursor { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; }
+  .cursor-dot {
+    width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
     transform: translate(-50%,-50%);
-    transition: transform .15s ease, width .2s, height .2s, background .2s;
   }
   .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--green-light);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9998;
-    transform: translate(-50%,-50%);
-    transition: transform .35s ease;
-    opacity: .7;
+    width: 32px; height: 32px; border: 1px solid var(--gold); border-radius: 50%;
+    transform: translate(-50%,-50%); opacity: .5;
   }
-  @media (hover: none) { .cursor, .cursor-ring { display: none; } * { cursor: auto; } }
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; width: 100%; z-index: 100;
-    padding: 22px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(248,250,246,0.92);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid rgba(74,140,83,0.12);
-    transition: padding .3s ease, box-shadow .3s ease;
+  /* ── LANG SWITCHER ── */
+  .lang-switcher {
+    position: fixed; top: 20px; right: 24px; z-index: 200;
+    display: flex; align-items: center; gap: 0;
   }
-  nav.scrolled {
-    padding: 14px 60px;
-    box-shadow: 0 4px 30px rgba(26,58,31,0.08);
-  }
-  .nav-logo {
-    display: flex; align-items: center; gap: 14px;
-    text-decoration: none;
-  }
-  .logo-leaf {
-    width: 42px; height: 42px;
-    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
-    border-radius: 50% 5px 50% 5px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 4px 16px rgba(45,94,52,0.3);
-  }
-  .logo-leaf svg { width: 22px; height: 22px; fill: white; }
-  .logo-text { line-height: 1; }
-  .logo-text strong {
-    display: block; font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem; font-weight: 600; color: var(--green-deep);
-    letter-spacing: 0.03em;
-  }
-  .logo-text span {
-    font-size: 0.62rem; letter-spacing: 0.22em; color: var(--gold);
-    text-transform: uppercase; font-weight: 500;
-  }
-  .nav-links {
-    display: flex; align-items: center; gap: 36px;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none; font-size: 0.82rem;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-muted); font-weight: 500;
-    position: relative; transition: color .25s;
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: -3px; left: 0;
-    width: 0; height: 1.5px; background: var(--green-mid);
-    transition: width .3s ease;
-  }
-  .nav-links a:hover { color: var(--green-deep); }
-  .nav-links a:hover::after { width: 100%; }
-  .nav-cta {
-    background: var(--green-mid);
-    color: white !important;
-    padding: 10px 24px !important;
-    border-radius: 2px !important;
-    letter-spacing: 0.12em !important;
-    transition: background .25s, transform .2s !important;
-  }
-  .nav-cta:hover { background: var(--green-deep) !important; transform: translateY(-1px); }
-  .nav-cta::after { display: none !important; }
-  .nav-burger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 4px; }
-  .nav-burger span { display: block; width: 24px; height: 2px; background: var(--green-deep); transition: .3s; }
+  html[dir="rtl"] .lang-switcher { right: auto; left: 24px; }
 
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    position: relative;
-    display: flex; flex-direction: column;
-    justify-content: center; align-items: center;
-    text-align: center;
-    padding: 120px 40px 80px;
+  .lang-current {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); background: rgba(13,31,14,.92);
+    border: 1px solid rgba(201,168,76,.3);
+    padding: 8px 14px; cursor: none;
+    backdrop-filter: blur(8px);
+    transition: border-color .3s;
+    user-select: none;
+  }
+  .lang-current:hover { border-color: var(--gold); }
+  .lang-arrow { font-size: .5rem; transition: transform .3s; }
+  .lang-switcher.open .lang-arrow { transform: rotate(180deg); }
+
+  .lang-dropdown {
+    position: absolute; top: calc(100% + 4px); right: 0;
+    background: rgba(13,31,14,.97);
+    border: 1px solid rgba(201,168,76,.2);
+    backdrop-filter: blur(12px);
+    display: none; flex-direction: column;
+    min-width: 160px;
     overflow: hidden;
   }
-  .hero-bg {
-    position: absolute; inset: 0;
+  html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+  .lang-switcher.open .lang-dropdown { display: flex; }
+
+  .lang-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: .72rem; letter-spacing: .1em;
+    color: var(--text-muted); cursor: none;
+    transition: background .2s, color .2s;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    text-decoration: none;
+  }
+  .lang-option:last-child { border-bottom: none; }
+  .lang-option:hover { background: rgba(201,168,76,.08); color: var(--gold); }
+  .lang-option.active { color: var(--gold); }
+  .lang-option .flag { font-size: 1rem; }
+  .lang-option .native { font-size: .8rem; opacity: .6; margin-left: auto; }
+  html[lang="ar"] .lang-option .native { margin-left: 0; margin-right: auto; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px;
+    background: linear-gradient(to bottom, rgba(13,31,14,.95) 0%, transparent 100%);
+    backdrop-filter: blur(4px);
+    transition: background .4s;
+  }
+  nav.scrolled { background: rgba(13,31,14,.97); }
+
+  .nav-logo { text-decoration: none; }
+  .nav-logo img { height: 50px; width: auto; object-fit: contain; }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'Jost', sans-serif; font-size: .72rem;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--cream); text-decoration: none; opacity: .75;
+    transition: opacity .3s, color .3s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  .nav-cta {
+    font-family: 'Jost', sans-serif; font-size: .68rem;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: var(--green-deep); background: var(--gold);
+    padding: 10px 20px; border: none; cursor: none;
+    text-decoration: none; transition: background .3s;
+  }
+  html[dir="rtl"] .nav-cta { margin-right: 0; margin-left: 0; }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: #0d1f0e;
+  }
+  .hero-video {
+    position: absolute; inset: 0; z-index: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: brightness(.45) saturate(.8);
+  }
+  .hero-video-overlay {
+    position: absolute; inset: 0; z-index: 1;
     background:
-      radial-gradient(ellipse 80% 60% at 50% 110%, rgba(74,140,83,0.14) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 40% at 15% 30%, rgba(168,201,161,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse 50% 50% at 85% 20%, rgba(201,168,76,0.06) 0%, transparent 50%);
-    background-color: var(--white);
+      linear-gradient(to bottom, rgba(13,31,14,.45) 0%, rgba(13,31,14,.15) 50%, rgba(13,31,14,.75) 100%),
+      radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, rgba(13,31,14,.35) 100%);
   }
-  .hero-pattern {
-    position: absolute; inset: 0; opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232D5E34' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  .hero-bg-pattern {
+    position: absolute; inset: 0; z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 80%, rgba(58,140,62,.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(201,168,76,.06) 0%, transparent 50%);
   }
-  .hero-leaf {
-    position: absolute;
-    opacity: 0.06;
-    animation: floatLeaf 8s ease-in-out infinite;
+  .hero-logo-img {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: min(420px,70vw); opacity: .06; pointer-events: none; z-index: 2;
   }
-  .hero-leaf:nth-child(1) { top: 12%; left: 8%; font-size: 120px; animation-delay: 0s; }
-  .hero-leaf:nth-child(2) { top: 20%; right: 6%; font-size: 80px; animation-delay: -3s; }
-  .hero-leaf:nth-child(3) { bottom: 18%; left: 5%; font-size: 60px; animation-delay: -5s; }
-  .hero-leaf:nth-child(4) { bottom: 25%; right: 10%; font-size: 100px; animation-delay: -1.5s; }
-  @keyframes floatLeaf {
-    0%,100% { transform: translateY(0) rotate(-10deg); }
-    50% { transform: translateY(-20px) rotate(10deg); }
+  .hero-logo-img img { width: 100%; height: auto; }
+  .hero-content {
+    text-align: center; position: relative; z-index: 3; padding: 0 24px;
+    animation: heroFadeIn 1.4s ease both;
   }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid var(--green-pale);
-    padding: 7px 18px; border-radius: 40px;
-    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--green-mid); font-weight: 500;
-    margin-bottom: 28px;
-    animation: fadeUp .8s ease both;
-    background: rgba(168,201,161,0.1);
+  @keyframes heroFadeIn {
+    from { opacity:0; transform:translateY(30px); }
+    to   { opacity:1; transform:translateY(0); }
   }
-  .hero-badge::before {
-    content: ''; width: 6px; height: 6px;
-    background: var(--green-light); border-radius: 50%;
-    animation: pulse 2s infinite;
+  .hero-eyebrow {
+    font-size: .7rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 28px;
+    animation: heroFadeIn 1.4s .2s ease both;
   }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.2rem, 8vw, 7rem);
-    font-weight: 300; line-height: 1.04;
-    color: var(--green-deep);
-    letter-spacing: -0.01em;
-    margin-bottom: 24px;
-    animation: fadeUp .9s .1s ease both;
+  .hero-title {
+    font-family: 'Cinzel', serif; font-size: clamp(3rem,8vw,7rem); font-weight: 400;
+    line-height: 1.05; letter-spacing: .05em; color: var(--cream); margin-bottom: 12px;
+    animation: heroFadeIn 1.4s .35s ease both;
   }
-  .hero h1 em { font-style: italic; color: var(--green-mid); }
-  .hero h1 .gold { color: var(--gold); }
+  .hero-title em {
+    font-style: italic; font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-light); font-size: 1.1em;
+  }
   .hero-sub {
-    max-width: 560px;
-    font-size: 1.05rem; line-height: 1.75;
-    color: var(--text-muted); font-weight: 300;
-    margin-bottom: 48px;
-    animation: fadeUp 1s .2s ease both;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem,2vw,1.5rem); font-style: italic;
+    color: var(--text-muted); margin-bottom: 52px; letter-spacing: .05em;
+    animation: heroFadeIn 1.4s .5s ease both;
   }
+  html[lang="ar"] .hero-sub { font-family: 'Noto Sans Arabic', sans-serif; font-style: normal; }
   .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-    animation: fadeUp 1s .35s ease both;
-  }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
-    color: white; padding: 16px 36px;
-    text-decoration: none; font-size: 0.8rem;
-    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
-    border-radius: 2px;
-    box-shadow: 0 8px 30px rgba(45,94,52,0.28);
-    transition: transform .25s, box-shadow .25s;
-    display: inline-flex; align-items: center; gap: 10px;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(45,94,52,0.36); }
-  .btn-secondary {
-    border: 1.5px solid var(--green-mid);
-    color: var(--green-mid); padding: 16px 36px;
-    text-decoration: none; font-size: 0.8rem;
-    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
-    border-radius: 2px; background: transparent;
-    transition: background .25s, color .25s, transform .25s;
-  }
-  .btn-secondary:hover {
-    background: var(--green-mid); color: white;
-    transform: translateY(-2px);
+    display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+    animation: heroFadeIn 1.4s .65s ease both;
   }
   .hero-scroll {
-    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--green-pale); font-size: 0.65rem; letter-spacing: 0.2em;
-    text-transform: uppercase;
-    animation: fadeUp 1s .6s ease both;
+    animation: heroFadeIn 1.4s 1s ease both;
+    z-index: 3;
   }
   .scroll-line {
     width: 1px; height: 50px;
-    background: linear-gradient(to bottom, var(--green-pale), transparent);
-    animation: scrollAnim 2s ease-in-out infinite;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    animation: scrollPulse 2s ease infinite;
   }
-  @keyframes scrollAnim { 0%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} 100%{opacity:0;transform:scaleY(0);transform-origin:bottom} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes scrollPulse { 0%,100%{opacity:.3;} 50%{opacity:1;} }
+  .scroll-label { font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); opacity: .6; }
 
-  /* ─── STATS BAR ─── */
-  .stats-bar {
-    background: var(--green-deep);
-    padding: 36px 60px;
-    display: flex; justify-content: center;
-    gap: 0;
+  /* ── BUTTONS ── */
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Jost', sans-serif; font-size: .72rem;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--green-deep); background: var(--gold);
+    padding: 16px 36px; text-decoration: none; border: none; cursor: none;
+    transition: background .3s, transform .3s;
   }
-  .stat-item {
-    text-align: center; flex: 1; max-width: 200px;
-    padding: 0 30px;
-    border-right: 1px solid rgba(255,255,255,0.1);
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Jost', sans-serif; font-size: .72rem;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--cream); background: transparent;
+    padding: 15px 36px; border: 1px solid rgba(201,168,76,.4);
+    text-decoration: none; cursor: none;
+    transition: border-color .3s, color .3s, transform .3s;
   }
-  .stat-item:last-child { border-right: none; }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem; font-weight: 600; color: var(--gold-light);
-    display: block; line-height: 1;
-  }
-  .stat-label {
-    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(200,230,192,0.7); margin-top: 6px;
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 0 auto 32px;
   }
 
-  /* ─── SECTION TEMPLATE ─── */
-  section { padding: 110px 60px; }
-  .section-tag {
-    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--green-light); font-weight: 500;
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 16px;
-  }
-  .section-tag::before {
-    content: ''; display: block; width: 30px; height: 1px;
-    background: var(--green-light);
+  /* ── SECTIONS ── */
+  section { padding: 120px 60px; }
+  .section-eyebrow {
+    font-size: .65rem; letter-spacing: .35em; text-transform: uppercase;
+    color: var(--gold); text-align: center; margin-bottom: 16px;
   }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.8rem);
-    font-weight: 300; line-height: 1.15;
-    color: var(--green-deep);
+    font-family: 'Cinzel', serif; font-size: clamp(1.8rem,4vw,3rem); font-weight: 400;
+    text-align: center; color: var(--cream); margin-bottom: 20px; letter-spacing: .05em;
   }
-  .section-title em { font-style: italic; }
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-style: italic;
+    color: var(--text-muted); text-align: center; max-width: 560px;
+    margin: 0 auto 60px; line-height: 1.7;
+  }
+  html[lang="ar"] .section-sub { font-family: 'Noto Sans Arabic', sans-serif; font-style: normal; }
 
-  /* ─── ABOUT ─── */
-  .about {
-    background: var(--off-white);
+  /* ── ABOUT ── */
+  #about { background: var(--green-dark); position: relative; overflow: hidden; }
+  #about::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 100% 50%, rgba(201,168,76,.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .about-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center;
+    align-items: center; max-width: 1100px; margin: 0 auto;
   }
-  .about-img {
-    position: relative; border-radius: 4px; overflow: hidden;
-    aspect-ratio: 4/5;
+  .about-text h3 {
+    font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 400;
+    color: var(--gold-light); margin-bottom: 24px; letter-spacing: .05em;
   }
-  .about-img img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform .8s ease;
+  html[lang="ar"] .about-text h3 { font-family: 'Noto Sans Arabic', sans-serif; }
+  .about-text p { font-size: .95rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 20px; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+  .stat-box {
+    background: rgba(255,255,255,.02); border: 1px solid rgba(201,168,76,.1);
+    padding: 36px 28px; text-align: center;
+    transition: border-color .3s, background .3s;
   }
-  .about-img:hover img { transform: scale(1.04); }
-  .about-img-decor {
-    position: absolute; bottom: -20px; right: -20px;
-    width: 120px; height: 120px;
-    border: 2px solid var(--gold);
-    border-radius: 4px; z-index: -1;
-    opacity: .4;
-  }
-  .about-img-badge {
-    position: absolute; top: 24px; left: 24px;
-    background: rgba(26,58,31,0.88);
-    backdrop-filter: blur(10px);
-    color: white; padding: 12px 18px; border-radius: 3px;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
-  }
-  .about-img-badge span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem; font-weight: 600; color: var(--gold-light);
-    display: block; line-height: 1;
-  }
-  .about-content { padding: 20px 0; }
-  .about-content .section-title { margin-bottom: 24px; }
-  .about-content p {
-    font-size: 1rem; line-height: 1.85; color: var(--text-muted);
-    font-weight: 300; margin-bottom: 18px;
-  }
-  .about-values {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    margin-top: 36px;
-  }
-  .value-item {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 16px; background: white; border-radius: 4px;
-    border-left: 3px solid var(--green-mint);
-    transition: border-color .3s, transform .3s;
-  }
-  .value-item:hover { border-color: var(--green-mid); transform: translateX(4px); }
-  .value-icon {
-    width: 34px; height: 34px; border-radius: 50%;
-    background: var(--off-white);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-  }
-  .value-text strong {
-    display: block; font-size: 0.78rem; font-weight: 600;
-    color: var(--green-deep); letter-spacing: 0.04em; margin-bottom: 3px;
-  }
-  .value-text span { font-size: 0.75rem; color: var(--text-muted); }
+  .stat-box:hover { border-color: rgba(201,168,76,.35); background: rgba(201,168,76,.04); }
+  .stat-number { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--gold); display: block; margin-bottom: 8px; }
+  .stat-label { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--text-muted); }
 
-  /* ─── PILLARS ─── */
-  .pillars { background: white; text-align: center; }
-  .pillars-header { max-width: 600px; margin: 0 auto 60px; }
-  .pillars-header .section-tag { justify-content: center; }
-  .pillars-header .section-tag::before { display: none; }
-  .pillars-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-    background: var(--green-mint);
-    border: 2px solid var(--green-mint);
-    border-radius: 6px; overflow: hidden;
-    max-width: 1000px; margin: 0 auto;
+  /* ── MEMBERSHIP ── */
+  #membership { background: var(--green-deep); }
+  .membership-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+    max-width: 1100px; margin: 0 auto;
   }
-  .pillar {
-    background: white; padding: 50px 36px;
-    transition: background .3s, transform .3s;
+  .membership-card {
+    background: rgba(255,255,255,.02); border: 1px solid rgba(201,168,76,.08);
+    padding: 48px 36px; text-align: center;
+    transition: transform .4s, border-color .4s, background .4s;
     position: relative; overflow: hidden;
   }
-  .pillar::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 3px; background: linear-gradient(90deg, var(--green-mid), var(--green-light));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .4s ease;
+  .membership-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    transform: scaleX(0); transition: transform .4s;
   }
-  .pillar:hover { background: var(--off-white); }
-  .pillar:hover::before { transform: scaleX(1); }
-  .pillar-icon {
-    font-size: 2.2rem; margin-bottom: 20px;
-    display: block;
-  }
-  .pillar h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem; font-weight: 400;
-    color: var(--green-deep); margin-bottom: 14px;
-  }
-  .pillar p {
-    font-size: 0.88rem; line-height: 1.8;
-    color: var(--text-muted); font-weight: 300;
-  }
+  .membership-card:hover { border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.04); transform: translateY(-6px); }
+  .membership-card:hover::before { transform: scaleX(1); }
+  .membership-card.featured { border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.06); }
+  .membership-card.featured::before { transform: scaleX(1); }
+  .card-icon { font-size: 2rem; margin-bottom: 20px; display: block; }
+  .card-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-light); letter-spacing: .1em; margin-bottom: 12px; }
+  html[lang="ar"] .card-name { font-family: 'Noto Sans Arabic', sans-serif; }
+  .card-price { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--cream); margin-bottom: 6px; }
+  .card-period { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 32px; }
+  .card-features { list-style: none; margin-bottom: 36px; }
+  .card-features li { font-size: .85rem; color: var(--text-muted); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .card-features li::before { content: '✦ '; color: var(--gold); font-size: .6rem; }
 
-  /* ─── EXPERIENCE ─── */
-  .experience { background: var(--green-deep); color: white; }
-  .experience .section-tag { color: var(--green-mint); }
-  .experience .section-tag::before { background: var(--green-mint); }
-  .experience .section-title { color: white; }
-  .experience .section-title em { color: var(--gold-light); }
-  .exp-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-    align-items: center; margin-top: 50px;
+  /* ── GALLERY ── */
+  #gallery { background: var(--green-dark); padding-bottom: 80px; }
+  .gallery-grid {
+    display: grid; grid-template-columns: repeat(2,1fr);
+    gap: 3px; max-width: 1200px; margin: 0 auto;
   }
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
-  .exp-item {
-    display: flex; align-items: flex-start; gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    transition: padding-left .3s;
-  }
-  .exp-item:hover { padding-left: 8px; }
-  .exp-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; color: var(--gold); opacity: .6;
-    min-width: 32px; margin-top: 2px;
-  }
-  .exp-content strong {
-    display: block; font-size: 1rem; font-weight: 500;
-    color: white; margin-bottom: 6px;
-  }
-  .exp-content p { font-size: 0.85rem; color: rgba(200,230,192,0.65); line-height: 1.7; }
-  .exp-visual {
-    position: relative; border-radius: 4px; overflow: hidden;
-    aspect-ratio: 4/5;
-  }
-  .exp-visual img { width: 100%; height: 100%; object-fit: cover; }
-  .exp-visual-overlay {
+  .gallery-item { background: var(--green-mid); aspect-ratio: 1; overflow: hidden; position: relative; cursor: none; }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 1; aspect-ratio: 16/7; min-height: unset; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; filter: brightness(.85) saturate(.9); }
+  .gallery-item:hover img { transform: scale(1.06); filter: brightness(1) saturate(1.1); }
+  .gallery-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,58,31,0.7) 0%, transparent 50%);
+    background: linear-gradient(to top, rgba(13,31,14,.6) 0%, transparent 50%);
+    opacity: 0; transition: opacity .4s;
+    display: flex; align-items: flex-end; padding: 20px;
   }
-  .exp-visual-text {
-    position: absolute; bottom: 28px; left: 28px; right: 28px;
-  }
-  .exp-visual-text p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem; font-style: italic;
-    color: white; line-height: 1.4;
-  }
-  .exp-visual-text span {
-    font-size: 0.7rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold-light);
-    display: block; margin-top: 8px;
-  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay span { font-family: 'Cormorant Garamond', serif; font-size: .9rem; font-style: italic; color: var(--gold-pale); }
+  html[lang="ar"] .gallery-overlay span { font-family: 'Noto Sans Arabic', sans-serif; font-style: normal; }
 
-  /* ─── FORM ─── */
-  .contact { background: var(--off-white); }
-  .contact-inner {
-    max-width: 760px; margin: 0 auto; text-align: center;
-  }
-  .contact-inner .section-tag { justify-content: center; }
-  .contact-inner .section-tag::before { display: none; }
-  .contact-inner .section-title { margin-bottom: 12px; }
-  .contact-inner > p {
-    font-size: 0.95rem; color: var(--text-muted); margin-bottom: 48px;
-    line-height: 1.7;
-  }
-  .form-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
-    text-align: left;
-  }
-  .form-group { display: flex; flex-direction: column; gap: 7px; }
-  .form-group.full { grid-column: 1/-1; }
-  .form-group label {
-    font-size: 0.72rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--green-deep); font-weight: 500;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    border: 1.5px solid rgba(74,140,83,0.2);
-    background: white; border-radius: 3px;
-    padding: 14px 18px; font-family: 'Outfit', sans-serif;
-    font-size: 0.9rem; color: var(--charcoal);
-    transition: border-color .25s, box-shadow .25s;
-    outline: none;
-    -webkit-appearance: none;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--green-mid);
-    box-shadow: 0 0 0 3px rgba(74,140,83,0.08);
-  }
-  .form-group textarea { resize: vertical; min-height: 100px; }
-  .form-submit {
-    margin-top: 28px;
-    display: flex; justify-content: center;
-  }
-  .btn-form {
-    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
-    color: white; padding: 16px 50px; border: none;
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.8rem; letter-spacing: 0.16em;
-    text-transform: uppercase; font-weight: 500;
-    border-radius: 2px; cursor: none;
-    box-shadow: 0 8px 28px rgba(45,94,52,0.25);
-    transition: transform .25s, box-shadow .25s;
-  }
-  .btn-form:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 36px rgba(45,94,52,0.35);
-  }
-  .form-success {
-    display: none; padding: 20px; background: rgba(74,140,83,0.1);
-    border: 1px solid var(--green-pale); border-radius: 4px;
-    color: var(--green-deep); font-size: 0.9rem; margin-top: 20px;
-  }
-
-  /* ─── MAP + LOCATION ─── */
-  .location { background: white; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .location-info {
-    padding: 80px 70px; display: flex; flex-direction: column;
-    justify-content: center;
-  }
-  .location-info .section-title { margin-bottom: 30px; }
-  .location-detail {
-    display: flex; gap: 16px; align-items: flex-start;
-    margin-bottom: 24px;
-  }
-  .loc-icon {
-    width: 40px; height: 40px; border-radius: 50%;
-    background: var(--off-white);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; flex-shrink: 0; margin-top: 2px;
-  }
-  .loc-text strong {
-    display: block; font-size: 0.78rem; text-transform: uppercase;
-    letter-spacing: 0.1em; color: var(--green-deep); margin-bottom: 4px;
-  }
-  .loc-text p, .loc-text a {
-    font-size: 0.9rem; color: var(--text-muted);
-    text-decoration: none; transition: color .25s;
-  }
-  .loc-text a:hover { color: var(--green-mid); }
-  .hours-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-    margin-top: 8px;
-  }
-  .hours-row {
-    display: flex; justify-content: space-between;
-    font-size: 0.82rem; color: var(--text-muted);
-    padding: 6px 0; border-bottom: 1px solid rgba(74,140,83,0.1);
-  }
-  .hours-row span:last-child { color: var(--green-mid); font-weight: 500; }
-  .location-map {
-    background: var(--off-white);
-    min-height: 500px; position: relative; overflow: hidden;
-  }
-  .location-map iframe {
-    width: 100%; height: 100%; border: none;
-    min-height: 500px; filter: saturate(1.1) brightness(1.02);
-  }
-
-  /* ─── REVIEWS ─── */
-  .reviews {
-    background: linear-gradient(135deg, var(--green-deep) 0%, #0f2312 100%);
-    color: white; text-align: center;
-  }
-  .reviews .section-tag { color: var(--green-mint); justify-content: center; }
-  .reviews .section-tag::before { display: none; }
-  .reviews .section-title { color: white; margin-bottom: 10px; }
-  .reviews .section-title em { color: var(--gold-light); }
-  .reviews-sub {
-    font-size: 0.9rem; color: rgba(200,230,192,0.6); margin-bottom: 50px;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-  }
-  .reviews-sub .stars { color: var(--gold); font-size: 1rem; }
-  .reviews-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  /* ── LOCATION ── */
+  #location { background: var(--green-deep); }
+  .location-inner {
     max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
   }
+  .location-info h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-light); margin-bottom: 24px; }
+  html[lang="ar"] .location-info h3 { font-family: 'Noto Sans Arabic', sans-serif; }
+  .location-detail { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
+  .detail-icon { font-size: 1.1rem; color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .detail-text { font-size: .9rem; line-height: 1.7; color: var(--text-muted); }
+  .detail-text strong { color: var(--cream); font-weight: 400; display: block; margin-bottom: 2px; }
+  .map-container { border: 1px solid rgba(201,168,76,.15); overflow: hidden; position: relative; }
+  .map-container::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    border: 1px solid rgba(201,168,76,.15); pointer-events: none;
+  }
+  .map-container iframe { width: 100%; height: 380px; border: none; display: block; filter: saturate(.7) brightness(.85); }
+
+  /* ── REVIEWS ── */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 2px; max-width: 1100px; margin: 0 auto;
+  }
+  @media(max-width:900px){ .reviews-grid { grid-template-columns: 1fr; max-width:480px; } }
+
   .review-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(200,230,192,0.1);
-    border-radius: 4px; padding: 32px;
-    text-align: left; transition: background .3s, transform .3s;
+    background: rgba(255,255,255,.02);
+    border: 1px solid rgba(201,168,76,.1);
+    padding: 36px 32px;
+    transition: border-color .4s, background .4s, transform .4s;
+    position: relative;
   }
-  .review-card:hover {
-    background: rgba(255,255,255,0.09);
-    transform: translateY(-4px);
-  }
-  .review-stars { color: var(--gold); margin-bottom: 14px; font-size: 0.9rem; }
-  .review-text {
-    font-size: 0.88rem; line-height: 1.75;
-    color: rgba(255,255,255,0.75); margin-bottom: 20px;
-    font-style: italic;
-  }
-  .review-author {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .review-avatar {
-    width: 36px; height: 36px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--green-mid), var(--gold));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.85rem; font-weight: 600; color: white;
-    flex-shrink: 0;
-  }
-  .review-name { font-size: 0.82rem; font-weight: 500; color: white; }
-  .review-date { font-size: 0.72rem; color: rgba(200,230,192,0.45); }
-
-  /* ─── CTA ─── */
-  .cta-strip {
-    background: var(--gold);
-    padding: 70px 60px; text-align: center;
-  }
-  .cta-strip h2 {
+  .review-card::before {
+    content: '\201C';
+    position: absolute; top: 20px; right: 28px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2.8rem; font-weight: 400;
-    color: var(--green-deep); margin-bottom: 14px;
-  }
-  .cta-strip h2 em { font-style: italic; }
-  .cta-strip p {
-    font-size: 0.95rem; color: rgba(26,58,31,0.7);
-    margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto;
-  }
-  .btn-dark {
-    background: var(--green-deep); color: white;
-    padding: 16px 40px; border-radius: 2px;
-    text-decoration: none; font-size: 0.8rem;
-    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
-    display: inline-block;
-    transition: transform .25s, box-shadow .25s;
-    box-shadow: 0 8px 24px rgba(26,58,31,0.25);
-  }
-  .btn-dark:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(26,58,31,0.35); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: #0D1F0F; color: rgba(200,230,192,0.55);
-    padding: 70px 60px 36px;
-  }
-  .footer-top {
-    display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 60px; margin-bottom: 50px;
-  }
-  .footer-brand .logo-leaf {
-    background: linear-gradient(135deg, var(--green-mid), var(--green-light));
-  }
-  .footer-brand .logo-text strong { color: white; }
-  .footer-brand .logo-text span { color: var(--gold); }
-  .footer-brand p {
-    font-size: 0.84rem; line-height: 1.75; margin-top: 16px;
-    color: rgba(200,230,192,0.5);
-  }
-  .footer-col h4 {
-    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: white; margin-bottom: 18px; font-weight: 500;
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 10px; }
-  .footer-col ul a {
-    text-decoration: none; font-size: 0.84rem;
-    color: rgba(200,230,192,0.5); transition: color .25s;
-  }
-  .footer-col ul a:hover { color: var(--green-mint); }
-  .footer-social { display: flex; gap: 12px; margin-top: 6px; }
-  .social-btn {
-    width: 38px; height: 38px; border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none; font-size: 0.9rem;
-    color: rgba(200,230,192,0.6);
-    transition: background .25s, color .25s, transform .25s;
-    border: 1px solid rgba(200,230,192,0.1);
-  }
-  .social-btn:hover {
-    background: var(--green-mid); color: white;
-    transform: translateY(-2px);
-  }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.07);
-    padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 12px;
-  }
-  .footer-bottom p { font-size: 0.76rem; }
-  .footer-legal { display: flex; gap: 24px; }
-  .footer-legal a { font-size: 0.76rem; color: rgba(200,230,192,0.35); text-decoration: none; }
-  .footer-legal a:hover { color: var(--green-mint); }
-  .adult-badge {
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 1px solid rgba(201,168,76,0.3);
-    padding: 6px 14px; border-radius: 40px;
-    font-size: 0.68rem; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--gold);
-    margin-bottom: 22px;
-  }
-  /* ─── WHATSAPP ─── */
-  .whatsapp-float {
-    position: fixed; bottom: 30px; right: 30px; z-index: 500;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: #25D366;
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
-    animation: waBounce 3s ease infinite;
-    transition: transform .25s;
-  }
-  .whatsapp-float:hover { transform: scale(1.12); }
-  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
-  @keyframes waBounce {
-    0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}
-  }
-
-  /* ─── SCROLL TO TOP ─── */
-  .scroll-top {
-    position: fixed; bottom: 100px; right: 30px; z-index: 500;
-    width: 46px; height: 46px; border-radius: 50%;
-    background: var(--green-deep);
-    border: 1.5px solid var(--green-light);
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 1.1rem;
-    box-shadow: 0 4px 16px rgba(26,58,31,0.35);
-    opacity: 0; pointer-events: none;
-    transition: opacity .3s, transform .3s;
-    cursor: none;
-  }
-  .scroll-top.visible { opacity: 1; pointer-events: all; }
-  .scroll-top:hover { transform: translateY(-3px); background: var(--green-mid); }
-
-  /* ─── LANGUAGE SWITCHER ─── */
-  .lang-switcher {
-    position: fixed; bottom: 158px; right: 30px; z-index: 500;
-    display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
-  }
-  .lang-btn-main {
-    width: 46px; height: 46px; border-radius: 50%;
-    background: var(--gold);
-    border: none; color: var(--green-deep);
-    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em;
-    box-shadow: 0 4px 16px rgba(201,168,76,0.4);
-    cursor: none; transition: transform .25s, background .25s;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .lang-btn-main:hover { transform: scale(1.1); }
-  .lang-options {
-    display: flex; flex-direction: column; gap: 5px; align-items: flex-end;
-    overflow: hidden; max-height: 0;
-    transition: max-height .4s ease;
-    margin-bottom: 4px;
-  }
-  .lang-options.open { max-height: 400px; }
-  .lang-option {
-    display: flex; align-items: center; gap: 8px;
-    background: white; border: 1.5px solid var(--green-pale);
-    border-radius: 24px; padding: 6px 14px 6px 10px;
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em;
-    color: var(--green-deep); cursor: none;
-    box-shadow: 0 2px 10px rgba(26,58,31,0.12);
-    transition: background .2s, color .2s, transform .2s;
-    white-space: nowrap; border: none; outline: none;
-  }
-  .lang-option:hover { background: var(--green-mid); color: white; transform: translateX(-3px); }
-  .lang-option.active { background: var(--green-deep); color: white; }
-
-  /* ─── SCROLL REVEAL ─── */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: .1s; }
-  .reveal-delay-2 { transition-delay: .2s; }
-  .reveal-delay-3 { transition-delay: .3s; }
-
-  /* ─── MOBILE ─── */
-  @media (max-width: 900px) {
-    section { padding: 70px 28px; }
-    nav { padding: 18px 28px; }
-    nav.scrolled { padding: 12px 28px; }
-    .nav-links { display: none; flex-direction: column; gap: 0;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: white; z-index: 200;
-      justify-content: center; align-items: center;
-      text-align: center;
-    }
-    .nav-links.open { display: flex; }
-    .nav-links li { width: 100%; padding: 14px; border-bottom: 1px solid var(--off-white); }
-    .nav-links a { font-size: 1rem; }
-    .nav-burger { display: flex; z-index: 300; position: relative; }
-    .hero h1 { font-size: 3rem; }
-    .stats-bar { flex-wrap: wrap; padding: 28px; gap: 24px; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; min-width: 140px; }
-    .about { grid-template-columns: 1fr; gap: 40px; }
-    .pillars-grid { grid-template-columns: 1fr; }
-    .exp-grid { grid-template-columns: 1fr; }
-    .location { grid-template-columns: 1fr; }
-    .location-info { padding: 50px 28px; }
-    .reviews-grid { grid-template-columns: 1fr; gap: 16px; }
-    .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-    .footer-brand { grid-column: 1/-1; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .about-values { grid-template-columns: 1fr; }
-    .form-grid { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: 1; }
-    .cta-strip h2 { font-size: 2rem; }
-  }
-  @media (max-width: 480px) {
-    .hero h1 { font-size: 2.4rem; }
-    .hero-actions { flex-direction: column; align-items: stretch; }
-    .hero-actions a { text-align: center; justify-content: center; }
-    .footer-top { grid-template-columns: 1fr; }
-  }
-  /* ─── REVIEWS HERO ─── */
-  .reviews-hero {
-    display: grid; grid-template-columns: 1fr 320px;
-    gap: 24px; max-width: 1000px; margin: 0 auto 50px;
-    border-radius: 8px; overflow: hidden;
-  }
-  .reviews-hero-img {
-    position: relative; min-height: 340px; overflow: hidden; border-radius: 6px;
-  }
-  .reviews-hero-img img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform .6s ease;
-  }
-  .reviews-hero:hover .reviews-hero-img img { transform: scale(1.04); }
-  .reviews-hero-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,58,31,0.5) 0%, transparent 60%);
-  }
-  .reviews-google-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(200,230,192,0.15);
-    border-radius: 6px; padding: 32px 28px;
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center; gap: 10px;
-  }
-  .rgc-logo {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
-    color: rgba(200,230,192,0.6); margin-bottom: 4px;
-  }
-  .rgc-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem; font-weight: 600; color: var(--gold-light);
+    font-size: 5rem; color: var(--gold); opacity: .1;
     line-height: 1;
   }
-  .rgc-stars { color: var(--gold); font-size: 1.3rem; letter-spacing: 3px; }
-  .rgc-count { font-size: 0.78rem; color: rgba(200,230,192,0.55); }
-  .rgc-bar-wrap { width: 100%; display: flex; flex-direction: column; gap: 5px; margin: 8px 0; }
-  .rgc-bar {
-    display: flex; align-items: center; gap: 8px; width: 100%;
-  }
-  .rgc-bar span {
-    flex: 1; height: 5px; background: rgba(255,255,255,0.08);
-    border-radius: 3px; position: relative; overflow: hidden;
-  }
-  .rgc-bar span::after {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: inherit; background: var(--gold);
-    border-radius: 3px;
-  }
-  .rgc-bar em { font-style: normal; font-size: 0.68rem; color: rgba(200,230,192,0.45); min-width: 28px; text-align: right; }
-  .rgc-cta {
-    margin-top: 12px; width: 100%;
-    background: var(--gold); color: var(--green-deep);
-    padding: 12px; border-radius: 3px;
-    text-decoration: none; font-size: 0.78rem;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    font-weight: 600; transition: opacity .25s, transform .25s;
-    display: block;
-  }
-  .rgc-cta:hover { opacity: .88; transform: translateY(-1px); }
-  @media (max-width: 900px) {
-    .reviews-hero { grid-template-columns: 1fr; }
-    .reviews-hero-img { min-height: 220px; }
-  }
+  .review-card:hover { border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.04); transform: translateY(-4px); }
 
-  /* ─── GALLERY ─── */
-  .gallery { background: var(--off-white); text-align: center; }
-  .gallery-header { max-width: 600px; margin: 0 auto 50px; }
-  .gallery-header .section-tag { justify-content: center; }
-  .gallery-header .section-tag::before { display: none; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto auto;
-    gap: 12px;
-    max-width: 1100px; margin: 0 auto;
+  .review-stars { color: var(--gold); font-size: 1rem; letter-spacing: .1em; margin-bottom: 18px; }
+  .review-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-style: italic;
+    color: var(--cream); line-height: 1.75;
+    margin-bottom: 28px;
+    opacity: .85;
   }
-  .gallery-item {
-    position: relative; overflow: hidden; border-radius: 4px;
+  html[lang="ar"] .review-text { font-family: 'Noto Sans Arabic', sans-serif; font-style: normal; }
+  .review-author { display: flex; align-items: center; gap: 14px; }
+  .review-avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+    border: 1px solid rgba(201,168,76,.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif; font-size: .8rem; color: var(--gold);
+    flex-shrink: 0;
+  }
+  .review-name { font-size: .85rem; color: var(--cream); margin-bottom: 3px; }
+  .review-meta { font-size: .68rem; letter-spacing: .1em; color: var(--text-muted); opacity: .6; }
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-inner > p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--text-muted); margin-bottom: 48px; line-height: 1.7; }
+  html[lang="ar"] .contact-inner > p { font-family: 'Noto Sans Arabic', sans-serif; font-style: normal; }
+
+  .contact-form { width: 100%; margin-bottom: 8px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+
+  .form-group { display: flex; flex-direction: column; margin-bottom: 16px; text-align: left; }
+  html[dir="rtl"] .form-group { text-align: right; }
+
+  .form-group label {
+    font-family: 'Jost', sans-serif;
+    font-size: .65rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group textarea {
+    background: rgba(255,255,255,.03);
+    border: 1px solid rgba(201,168,76,.2);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif; font-size: .9rem; font-weight: 300;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color .3s, background .3s;
+    resize: none;
+    width: 100%;
+  }
+  html[lang="ar"] .form-group input,
+  html[lang="ar"] .form-group textarea { font-family: 'Noto Sans Arabic', sans-serif; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-muted); opacity: .5; }
+  .form-group input:focus,
+  .form-group textarea:focus { border-color: var(--gold); background: rgba(201,168,76,.04); }
+
+  .form-error {
+    font-size: .78rem; color: #e07070; margin-bottom: 16px;
+    text-align: center; letter-spacing: .05em;
+  }
+  .wa-button {
+    display: inline-flex; align-items: center; gap: 14px;
+    font-family: 'Jost', sans-serif; font-size: .78rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--green-deep); background: var(--gold); padding: 20px 48px;
+    text-decoration: none; cursor: none; transition: background .3s, transform .3s; border: none;
+  }
+  .wa-button:hover { background: var(--gold-light); transform: translateY(-3px); }
+  .wa-icon { font-size: 1.2rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #080f08; padding: 48px 60px 24px;
+    border-top: 1px solid rgba(201,168,76,.1);
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 24px; margin-bottom: 32px;
+  }
+  .footer-logo { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .2em; color: var(--gold); }
+  .footer-note { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); opacity: .5; text-align: center; }
+  .footer-lang-links { display: flex; gap: 20px; }
+  .footer-lang-links a {
+    font-size: .68rem; letter-spacing: .15em; text-transform: uppercase;
+    color: var(--text-muted); text-decoration: none; opacity: .5;
+    transition: opacity .3s, color .3s; cursor: none;
+  }
+  .footer-lang-links a:hover { opacity: 1; color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.04); padding-top: 20px;
+    text-align: center;
+  }
+  .footer-credit {
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-muted); opacity: .35;
+  }
+  .footer-credit a { color: var(--gold); opacity: .6; text-decoration: none; transition: opacity .3s; cursor: none; }
+  .footer-credit a:hover { opacity: 1; }
+
+  .nav-social { display: flex; align-items: center; gap: 16px; }
+  .nav-ig {
+    display: flex; align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(201,168,76,.3);
+    color: var(--gold); text-decoration: none; font-size: 1rem;
+    transition: border-color .3s, background .3s, transform .3s;
     cursor: none;
   }
-  .gallery-item:first-child {
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
-  }
-  .gallery-item:nth-child(4) {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-  }
-  .gallery-item:nth-child(5) {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  }
-  .gallery-item:nth-child(6) {
-    grid-column: 3 / 4;
-    grid-row: 2 / 3;
-  }
-  .gallery-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    min-height: 220px;
-    display: block;
-    transition: transform .6s ease;
-  }
-  .gallery-item:first-child img { min-height: 320px; }
-  .gallery-item:hover img { transform: scale(1.06); }
-  .gallery-item-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,58,31,0.55) 0%, transparent 55%);
-    opacity: 0; transition: opacity .35s;
-    display: flex; align-items: flex-end; justify-content: flex-start;
-    padding: 20px;
-  }
-  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
-  .gallery-item-overlay span {
-    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(200,230,192,0.9); font-weight: 500;
-  }
-  .gallery-ig {
-    display: inline-flex; align-items: center; gap: 10px;
-    margin-top: 36px; text-decoration: none;
-    border: 1.5px solid var(--green-mid); color: var(--green-mid);
-    padding: 12px 28px; border-radius: 2px;
-    font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
-    font-weight: 500; transition: background .25s, color .25s, transform .25s;
-  }
-  .gallery-ig:hover { background: var(--green-mid); color: white; transform: translateY(-2px); }
+  .nav-ig:hover { border-color: var(--gold); background: rgba(201,168,76,.1); transform: translateY(-2px); }
 
-  /* ─── LIGHTBOX ─── */
+  .footer-social { display: flex; gap: 12px; }
+  .footer-ig {
+    display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px;
+    border: 1px solid rgba(201,168,76,.2);
+    color: var(--text-muted); text-decoration: none; font-size: 1.1rem;
+    transition: border-color .3s, color .3s;
+    cursor: none;
+  }
+  .footer-ig:hover { border-color: var(--gold); color: var(--gold); }
   .lightbox {
-    display: none; position: fixed; inset: 0; z-index: 2000;
-    background: rgba(10,20,12,0.95);
-    align-items: center; justify-content: center;
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(8,15,8,.95);
+    display: none; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
   }
-  .lightbox.open { display: flex; }
-  .lightbox img {
-    max-width: 90vw; max-height: 85vh;
-    object-fit: contain; border-radius: 4px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-    cursor: none;
-  }
+  .lightbox.active { display: flex; }
+  .lightbox img { max-width: 85vw; max-height: 85vh; object-fit: contain; border: 1px solid rgba(201,168,76,.2); }
   .lightbox-close {
-    position: absolute; top: 24px; right: 32px;
-    font-size: 2rem; color: white; background: none;
-    border: none; cursor: none; opacity: .7;
-    transition: opacity .2s;
+    position: absolute; top: 32px; right: 40px;
+    font-size: 1.8rem; color: var(--gold); cursor: none;
+    background: none; border: none; opacity: .6; transition: opacity .3s;
   }
   .lightbox-close:hover { opacity: 1; }
-  .lightbox-prev, .lightbox-next {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    font-size: 2rem; color: white; background: rgba(255,255,255,0.08);
-    border: none; cursor: none; width: 50px; height: 50px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    transition: background .2s;
-  }
-  .lightbox-prev:hover, .lightbox-next:hover { background: rgba(255,255,255,0.18); }
-  .lightbox-prev { left: 20px; }
-  .lightbox-next { right: 20px; }
 
-  @media (max-width: 900px) {
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-item:first-child { grid-column: 1/-1; }
-    .gallery-item:nth-child(4), .gallery-item:nth-child(5) { grid-column: auto; grid-row: auto; }
-    .gallery-item:nth-child(6) { grid-column: 1/-1; grid-row: auto; }
+  /* ── AGE GATE ── */
+  .age-gate {
+    position: fixed; inset: 0; z-index: 999;
+    background: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    transition: opacity .6s, visibility .6s;
   }
-  @media (max-width: 480px) {
+  .age-gate.hidden { opacity: 0; visibility: hidden; }
+  .age-gate p { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 48px; text-align: center; }
+  .age-gate-title { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: .2em; color: var(--cream); margin-bottom: 36px; text-align: center; }
+  .age-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .15s; }
+  .reveal-delay-2 { transition-delay: .3s; }
+  .reveal-delay-3 { transition-delay: .45s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .nav-cta { margin-right: 130px; }
+    html[dir="rtl"] .nav-cta { margin-right: 0; margin-left: 130px; }
+    section { padding: 80px 24px; }
+    .about-grid, .location-inner { grid-template-columns: 1fr; gap: 48px; }
+    .membership-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-item:first-child { grid-column: span 2; }
+    footer { padding: 40px 24px 20px; }
+    .footer-top { flex-direction: column; text-align: center; }
+    .lang-switcher { top: 14px; right: 16px; }
+    html[dir="rtl"] .lang-switcher { right: auto; left: 16px; }
+  }
+  @media (max-width: 500px) {
     .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-item:first-child, .gallery-item:nth-child(6) { grid-column: 1; }
+    .gallery-item:first-child { grid-column: span 1; }
+    .hero-actions { flex-direction: column; align-items: center; }
   }
 </style>
 </head>
 <body>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">▲</button>
-
-<div class="lang-switcher">
-  <div class="lang-options" id="langOptions">
-    <button class="lang-option active" onclick="setLang('es')">🇪🇸 Español</button>
-    <button class="lang-option" onclick="setLang('en')">🇬🇧 English</button>
-    <button class="lang-option" onclick="setLang('it')">🇮🇹 Italiano</button>
-    <button class="lang-option" onclick="setLang('fr')">🇫🇷 Français</button>
-    <button class="lang-option" onclick="setLang('ar')">🇸🇦 العربية</button>
+<!-- AGE GATE -->
+<div class="age-gate" id="ageGate">
+  <img src="https://i.imgur.com/Clglirb.jpeg" alt="The Garden Ibiza" style="width:min(220px,55vw);height:auto;margin-bottom:24px;">
+  <p>Cannabis Social Club — Ibiza</p>
+  <div class="age-gate-title" data-i18n="age_question">¿Tienes 18 años o más?</div>
+  <div class="age-btns">
+    <a href="#" class="btn-gold" onclick="enterSite(event)" data-i18n="age_yes">Sí, soy mayor de edad</a>
+    <a href="https://google.com" class="btn-outline" data-i18n="age_no">No</a>
   </div>
-  <button class="lang-btn-main" id="langToggle" onclick="toggleLang()" aria-label="Idioma">🌐</button>
 </div>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
-<a class="whatsapp-float" href="https://wa.me/34637064533?text=Hola%20Grace%20Weed%20Club%2C%20me%20gustar%C3%ADa%20unirme%20al%20club." target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<!-- CURSOR -->
+<div class="cursor" id="cursorDot"><div class="cursor-dot"></div></div>
+<div class="cursor" id="cursorRing"><div class="cursor-ring"></div></div>
 
-<nav id="mainNav">
-  <a href="#" class="nav-logo">
-    <div class="logo-leaf" style="background:none;box-shadow:none;overflow:hidden;">
-      <img src="https://i.imgur.com/z4p8tIm.jpeg" alt="Grace Weed Club Logo" style="width:42px;height:42px;object-fit:cover;border-radius:50% 5px 50% 5px;">
-    </div>
-    <div class="logo-text">
-      <strong>Grace Weed Club</strong>
-      <span>Cannabis Social Club · Ibiza</span>
-    </div>
+<!-- LANG SWITCHER -->
+<div class="lang-switcher" id="langSwitcher">
+  <div class="lang-current" id="langCurrent" onclick="toggleLang()">
+    <span id="langFlag">🇪🇸</span>
+    <span id="langCode">ES</span>
+    <span class="lang-arrow">▼</span>
+  </div>
+  <div class="lang-dropdown" id="langDropdown">
+    <a class="lang-option active" onclick="setLang('es')" href="#">
+      <span class="flag">🇪🇸</span> Español <span class="native">ES</span>
+    </a>
+    <a class="lang-option" onclick="setLang('en')" href="#">
+      <span class="flag">🇬🇧</span> English <span class="native">EN</span>
+    </a>
+    <a class="lang-option" onclick="setLang('fr')" href="#">
+      <span class="flag">🇫🇷</span> Français <span class="native">FR</span>
+    </a>
+    <a class="lang-option" onclick="setLang('it')" href="#">
+      <span class="flag">🇮🇹</span> Italiano <span class="native">IT</span>
+    </a>
+    <a class="lang-option" onclick="setLang('ar')" href="#">
+      <span class="flag">🇲🇦</span> العربية <span class="native">AR</span>
+    </a>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="https://i.imgur.com/Clglirb.jpeg" alt="The Garden Ibiza">
   </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">Nosotros</a></li>
-    <li><a href="#experience">Experiencia</a></li>
-    <li><a href="#gallery">Galería</a></li>
-    <li><a href="#reviews">Reseñas</a></li>
-    <li><a href="#location">Ubicación</a></li>
-    <li><a href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" target="_blank">Instagram</a></li>
-    <li><a href="#contact" class="nav-cta">Únete</a></li>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav_club">Club</a></li>
+    <li><a href="#membership" data-i18n="nav_membership">Membresía</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">Galería</a></li>
+    <li><a href="#location" data-i18n="nav_location">Ubicación</a></li>
   </ul>
-  <button class="nav-burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-social">
+    <a href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" class="nav-ig" target="_blank" title="Instagram">📷</a>
+    <a href="https://wa.me/34637064533" class="nav-cta" target="_blank" data-i18n="nav_join">Únete</a>
+  </div>
 </nav>
 
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
-  <div class="hero-leaf">🌿</div>
-  <div class="hero-leaf">🍃</div>
-  <div class="hero-leaf">🌱</div>
-  <div class="hero-leaf">🌿</div>
-
-  <div style="position:relative;z-index:2">
-    <div class="hero-badge">Club Privado · 4.541 Reseñas ⭐</div>
-    <h1>
-      Bienvenido a<br>
-      <em>Grace</em> <span class="gold">Weed</span> Club
-    </h1>
-    <p class="hero-sub">
-      La asociación cannábica de referencia en Ibiza. Productos de alta gama, ambiente sofisticado y una comunidad exclusiva en el corazón de Platja d'en Bossa.
-    </p>
+<!-- HERO -->
+<section id="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://i.imgur.com/7qTGSo8.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-logo-img"><img src="https://i.imgur.com/Clglirb.jpeg" alt=""></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">Cannabis Social Club · Eivissa</p>
+    <h1 class="hero-title">THE<br><em>Garden</em><br>IBIZA</h1>
+    <p class="hero-sub" data-i18n="hero_sub">Un refugio exclusivo en el corazón de la isla</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.5 2 6 5.5 6 9c0 2.5 1 4.7 2.5 6.2l-.5 6.8h8l-.5-6.8C17 13.7 18 11.5 18 9c0-3.5-2.5-7-6-7z"/></svg>
-        Solicitar Membresía
-      </a>
-      <a href="#about" class="btn-secondary">Descubrir más</a>
+      <a href="https://wa.me/34637064533" class="btn-gold" target="_blank" data-i18n="hero_cta1">💬 Solicitar Membresía</a>
+      <a href="#about" class="btn-outline" data-i18n="hero_cta2">Descubrir el Club</a>
     </div>
   </div>
   <div class="hero-scroll">
-    <span>Scroll</span>
     <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
   </div>
 </section>
 
-<div class="stats-bar reveal">
-  <div class="stat-item">
-    <span class="stat-num" data-target="4541">0</span>
-    <div class="stat-label">Reseñas Google</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="500">0</span>
-    <div class="stat-label">Miembros activos</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="30">0</span>
-    <div class="stat-label">Variedades premium</div>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" data-target="365">0</span>
-    <div class="stat-label">Días al año</div>
-  </div>
-</div>
-
-<section class="about" id="about">
-  <div class="about-img reveal">
-    <img src="https://i.imgur.com/iBJPs2I.jpg" alt="Grace Weed Club interior">
-    <div class="about-img-decor"></div>
-    <div class="about-img-badge">
-      <span>4.5★</span>
-      Valoración media
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <div class="gold-divider"></div>
+      <h3 data-i18n="about_title">Un espacio para entendidos</h3>
+      <p data-i18n="about_p1">The Garden Ibiza es un club social privado ubicado en el Carrer Pablo Picasso, en el corazón de Eivissa. Un lugar donde la cultura cannábica se celebra con elegancia, privacidad y respeto.</p>
+      <p data-i18n="about_p2">Nuestros socios disfrutan de un ambiente cuidado, selección premium de variedades y una comunidad que comparte valores de bienestar y autenticidad.</p>
+      <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold-pale);font-size:1.05rem;line-height:1.8;" data-i18n="about_quote">Exclusividad, discreción y calidad — sin concesiones.</p>
     </div>
-  </div>
-  <div class="about-content">
-    <div class="reveal">
-      <div class="section-tag">Quiénes somos</div>
-      <h2 class="section-title">El lado más <em>sofisticado</em><br>del cannabis en Ibiza</h2>
-    </div>
-    <div class="reveal reveal-delay-1">
-      <p>Ubicado en Platja d'en Bossa, Grace Club 2.0 ofrece una experiencia de cannabis de primer nivel. Como asociación cannábica en Ibiza, proporcionamos productos de alta gama en un entorno cálido, seguro y cuidadosamente diseñado para el disfrute.</p>
-      <p>Únete a nuestra comunidad y disfruta de asesoramiento personalizado, eventos exclusivos y un espacio donde la calidad es siempre la prioridad. Descubre el lado más sofisticado del cannabis en Ibiza.</p>
-    </div>
-    <div class="about-values reveal reveal-delay-2">
-      <div class="value-item">
-        <div class="value-icon">🌿</div>
-        <div class="value-text">
-          <strong>Calidad Premium</strong>
-          <span>Selección artesanal de variedades</span>
-        </div>
+    <div class="about-stats reveal reveal-delay-1">
+      <div class="stat-box">
+        <span class="stat-number">4.5★</span>
+        <span class="stat-label" data-i18n="stat1">Valoración Google</span>
       </div>
-      <div class="value-item">
-        <div class="value-icon">🔒</div>
-        <div class="value-text">
-          <strong>Privacidad Total</strong>
-          <span>Club asociativo, acceso privado</span>
-        </div>
+      <div class="stat-box">
+        <span class="stat-number">41+</span>
+        <span class="stat-label" data-i18n="stat2">Opiniones</span>
       </div>
-      <div class="value-item">
-        <div class="value-icon">🎯</div>
-        <div class="value-text">
-          <strong>Asesoramiento</strong>
-          <span>Expertos a tu disposición</span>
-        </div>
+      <div class="stat-box">
+        <span class="stat-number">7/7</span>
+        <span class="stat-label" data-i18n="stat3">Días abierto</span>
       </div>
-      <div class="value-item">
-        <div class="value-icon">✨</div>
-        <div class="value-text">
-          <strong>Eventos exclusivos</strong>
-          <span>Comunidad y cultura cannábica</span>
-        </div>
+      <div class="stat-box">
+        <span class="stat-number">∞</span>
+        <span class="stat-label" data-i18n="stat4">Buenos momentos</span>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pillars" id="pillars">
-  <div class="pillars-header reveal">
-    <div class="section-tag">Nuestros pilares</div>
-    <h2 class="section-title"><em>Calidad, Ubicación</em><br>y Buen Ambiente</h2>
-  </div>
-  <div class="pillars-grid">
-    <div class="pillar reveal">
-      <span class="pillar-icon">🌿</span>
-      <h3>Calidad</h3>
-      <p>Todo es seleccionado a mano por un equipo de expertos para garantizar los más altos estándares. Sólo lo mejor llega a nuestros miembros.</p>
+<!-- MEMBERSHIP -->
+<section id="membership">
+  <p class="section-eyebrow reveal" data-i18n="mem_eyebrow">Acceso al Club</p>
+  <h2 class="section-title reveal" data-i18n="mem_title">Planes de Membresía</h2>
+  <p class="section-sub reveal" data-i18n="mem_sub">Elige el plan que mejor se adapta a tus necesidades. Todos incluyen acceso completo al club y a nuestra selección premium.</p>
+  <div class="membership-grid">
+    <div class="membership-card reveal">
+      <span class="card-icon">🌱</span>
+      <div class="card-name" data-i18n="card1_name">Socio Básico</div>
+      <div class="card-price" data-i18n="card_price">Consultar</div>
+      <div class="card-period" data-i18n="card_period">Precio por membresía</div>
+      <ul class="card-features">
+        <li data-i18n="c1f1">Acceso al club</li>
+        <li data-i18n="c1f2">Selección estándar</li>
+        <li data-i18n="c1f3">Wi-Fi incluido</li>
+        <li data-i18n="c1f4">Zona de descanso</li>
+      </ul>
+      <a href="https://wa.me/34637064533" class="btn-outline" target="_blank" style="font-size:.65rem;padding:12px 24px;" data-i18n="btn_request">Solicitar</a>
     </div>
-    <div class="pillar reveal reveal-delay-1">
-      <span class="pillar-icon">📍</span>
-      <h3>Ubicación</h3>
-      <p>Perfectamente situado en Carrer Pablo Picasso, en el corazón de Eivissa, cerca de todo lo que hace única a Ibiza. Fácil acceso y ambiente incomparable.</p>
+    <div class="membership-card featured reveal reveal-delay-1">
+      <span class="card-icon">🌿</span>
+      <div class="card-name" data-i18n="card2_name">Socio Premium</div>
+      <div class="card-price" data-i18n="card_price">Consultar</div>
+      <div class="card-period" data-i18n="card_period">Precio por membresía</div>
+      <ul class="card-features">
+        <li data-i18n="c2f1">Todo lo básico</li>
+        <li data-i18n="c2f2">Variedades exclusivas</li>
+        <li data-i18n="c2f3">Sala privada</li>
+        <li data-i18n="c2f4">Eventos VIP</li>
+        <li data-i18n="c2f5">Asesoramiento personal</li>
+      </ul>
+      <a href="https://wa.me/34637064533" class="btn-gold" target="_blank" style="font-size:.65rem;padding:12px 24px;" data-i18n="btn_request">Solicitar</a>
     </div>
-    <div class="pillar reveal reveal-delay-2">
-      <span class="pillar-icon">🎶</span>
-      <h3>Ambiente</h3>
-      <p>Ibiza tiene uno de los ambientes más vibrantes del mundo. Reproducimos ese espíritu en nuestra comunidad: un espacio seguro, divertido y diverso.</p>
+    <div class="membership-card reveal reveal-delay-2">
+      <span class="card-icon">🍃</span>
+      <div class="card-name" data-i18n="card3_name">Socio VIP</div>
+      <div class="card-price" data-i18n="card_price">Consultar</div>
+      <div class="card-period" data-i18n="card_period">Precio por membresía</div>
+      <ul class="card-features">
+        <li data-i18n="c3f1">Todo lo Premium</li>
+        <li data-i18n="c3f2">Acceso prioritario</li>
+        <li data-i18n="c3f3">Reservas privadas</li>
+        <li data-i18n="c3f4">Eventos exclusivos</li>
+        <li data-i18n="c3f5">Colección limitada</li>
+      </ul>
+      <a href="https://wa.me/34637064533" class="btn-outline" target="_blank" style="font-size:.65rem;padding:12px 24px;" data-i18n="btn_request">Solicitar</a>
     </div>
   </div>
 </section>
 
-<!-- ─── GALLERY (5 items, Xem7zBx eliminado) ─── -->
-<section class="gallery" id="gallery">
-  <div class="gallery-header reveal">
-    <div class="section-tag">Galería</div>
-    <h2 class="section-title">Vive la <em>experiencia</em><br>Grace Club</h2>
-  </div>
+<!-- GALLERY -->
+<section id="gallery">
+  <p class="section-eyebrow reveal" data-i18n="gal_eyebrow">Nuestro Espacio</p>
+  <h2 class="section-title reveal" data-i18n="gal_title">El Ambiente</h2>
+  <p class="section-sub reveal" data-i18n="gal_sub">Un interior diseñado para la calma, la conversación y el placer de los sentidos.</p>
   <div class="gallery-grid">
-    <div class="gallery-item reveal" onclick="openLightbox(0)">
-      <img src="https://i.imgur.com/iBJPs2I.jpeg" alt="Grace Weed Club Ibiza" loading="lazy">
-      <div class="gallery-item-overlay"><span>Grace Club · Ibiza</span></div>
+    <div class="gallery-item">
+      <img src="https://i.imgur.com/M4qppnw.png" alt="The Garden Ibiza">
+      <div class="gallery-overlay"><span data-i18n="img2">Zona Lounge</span></div>
     </div>
-    <div class="gallery-item reveal reveal-delay-1" onclick="openLightbox(1)">
-      <img src="https://i.imgur.com/bG6u7UQ.jpg" alt="Grace Weed Club" loading="lazy">
-      <div class="gallery-item-overlay"><span>Ambiente exclusivo</span></div>
+    <div class="gallery-item">
+      <img src="https://i.imgur.com/cPs0qIM.png" alt="The Garden Ibiza">
+      <div class="gallery-overlay"><span data-i18n="img3">Selección Premium</span></div>
     </div>
-
-    <div class="gallery-item reveal reveal-delay-2" onclick="openLightbox(2)">
-      <img src="https://i.imgur.com/elzOpot.png" alt="Grace Club comunidad" loading="lazy">
-      <div class="gallery-item-overlay"><span>Comunidad Grace</span></div>
-    </div>
-    <div class="gallery-item reveal reveal-delay-3" onclick="openLightbox(3)">
-      <img src="https://i.imgur.com/t0u1SLJ.png" alt="Grace Club Ibiza 2025" loading="lazy">
-      <div class="gallery-item-overlay"><span>Ibiza 2025</span></div>
-    </div>
-  </div>
-  <div style="margin-top:40px" class="reveal">
-    <a class="gallery-ig" href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" target="_blank">
-      📸 Síguenos en Instagram @clubgrace2.0ibiza
-    </a>
-  </div>
-</section>
-
-<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-  <button class="lightbox-prev" onclick="event.stopPropagation();changeLightbox(-1)">‹</button>
-  <img id="lightboxImg" src="" alt="Grace Weed Club">
-  <button class="lightbox-next" onclick="event.stopPropagation();changeLightbox(1)">›</button>
-</div>
-
-<section class="experience" id="experience">
-  <div class="section-tag reveal">Experiencia</div>
-  <h2 class="section-title reveal reveal-delay-1">Así es tu <em>experiencia</em><br>en <span style="color:var(--gold-light)">Grace Club</span></h2>
-  <div class="exp-grid">
-    <div class="exp-list">
-      <div class="exp-item reveal">
-        <span class="exp-num">01</span>
-        <div class="exp-content">
-          <strong>Solicita tu membresía</strong>
-          <p>Rellena el formulario o contáctanos por WhatsApp. Verificamos tu identidad y te damos acceso inmediato.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal reveal-delay-1">
-        <span class="exp-num">02</span>
-        <div class="exp-content">
-          <strong>Descubre nuestra selección</strong>
-          <p>Más de 30 variedades premium seleccionadas por nuestros expertos. Indica y flores de la más alta calidad.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal reveal-delay-2">
-        <span class="exp-num">03</span>
-        <div class="exp-content">
-          <strong>Asesoramiento personalizado</strong>
-          <p>Nuestro equipo te orienta sobre las mejores opciones según tus preferencias y necesidades.</p>
-        </div>
-      </div>
-      <div class="exp-item reveal reveal-delay-3">
-        <span class="exp-num">04</span>
-        <div class="exp-content">
-          <strong>Disfruta y conecta</strong>
-          <p>Un espacio único para relajarte, socializar y vivir eventos exclusivos con la comunidad Grace.</p>
-        </div>
-      </div>
-    </div>
-    <div class="exp-visual reveal reveal-delay-2">
-      <img src="https://i.imgur.com/bG6u7UQ.jpg" alt="Grace Weed Club experience">
-      <div class="exp-visual-overlay"></div>
-      <div class="exp-visual-text">
-        <p>"La discreción y la calidad son nuestra razón de ser"</p>
-        <span>Grace Weed Club · Ibiza 2025</span>
-      </div>
+    <div class="gallery-item">
+      <img src="https://i.imgur.com/cW7Wzji.png" alt="The Garden Ibiza">
+      <div class="gallery-overlay"><span data-i18n="img4">Área Privada</span></div>
     </div>
   </div>
 </section>
 
-<section class="reviews" id="reviews">
-  <div class="section-tag reveal">Comunidad</div>
-  <h2 class="section-title reveal reveal-delay-1">Lo que dicen<br>nuestros <em>miembros</em></h2>
+<!-- REVIEWS -->
+<section id="reviews" style="background:var(--green-deep);padding:100px 60px;">
+  <p class="section-eyebrow reveal">Google Reviews</p>
+  <h2 class="section-title reveal" data-i18n="rev_title">Lo que dicen nuestros socios</h2>
+  <div class="gold-divider reveal" style="margin-bottom:60px;"></div>
 
-  <div class="reviews-hero reveal reveal-delay-1">
-    <div class="reviews-hero-img">
-      <img src="https://i.imgur.com/iBJPs2I.jpg" alt="Grace Weed Club Ibiza">
-      <div class="reviews-hero-overlay"></div>
-    </div>
-    <div class="reviews-google-card">
-      <div class="rgc-logo">
-        <svg viewBox="0 0 24 24" width="28" height="28"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        <span>Google Reviews</span>
-      </div>
-      <div class="rgc-score">4.5</div>
-      <div class="rgc-stars">★★★★★</div>
-      <div class="rgc-count">Basado en 4.541 reseñas</div>
-      <div class="rgc-bar-wrap">
-        <div class="rgc-bar"><span style="width:82%"></span><em>5 ★</em></div>
-        <div class="rgc-bar"><span style="width:10%"></span><em>4 ★</em></div>
-        <div class="rgc-bar"><span style="width:5%"></span><em>3 ★</em></div>
-        <div class="rgc-bar"><span style="width:2%"></span><em>2 ★</em></div>
-        <div class="rgc-bar"><span style="width:1%"></span><em>1 ★</em></div>
-      </div>
-      <a href="https://wa.me/34637064533" target="_blank" class="rgc-cta">Únete al club</a>
-    </div>
-  </div>
-
-  <p class="reviews-sub reveal reveal-delay-2">
-    <span class="stars">★★★★★</span>
-    4.5 · Más de 4.541 reseñas en Google
-  </p>
   <div class="reviews-grid">
+
     <div class="review-card reveal">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"El mejor club cannábico de Ibiza sin duda. El personal es increíblemente amable y la selección de productos es de primera. Muy recomendado a cualquiera que visite la isla."</p>
+      <p class="review-text">"As a resident i can say its the best on the Island! Friendly staff, good vibes, and great hierbas! 🌿💚"</p>
       <div class="review-author">
-        <div class="review-avatar">MG</div>
+        <div class="review-avatar">LJ</div>
         <div>
-          <div class="review-name">Marc G.</div>
-          <div class="review-date">Hace 2 semanas</div>
+          <div class="review-name">Lenny Janssen</div>
+          <div class="review-meta">Google · hace 8 meses</div>
         </div>
       </div>
     </div>
+
     <div class="review-card reveal reveal-delay-1">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Ambiente exclusivo y relajado. La atención personalizada que recibí fue excepcional, me explicaron todo sobre las variedades disponibles. Un lugar de lujo en Ibiza."</p>
+      <p class="review-text">"Very cool Social Club, easy, fast and cheap registration. They have very good and strong strains, my favourite for a good night sleep was the best I've tried."</p>
       <div class="review-author">
-        <div class="review-avatar">SL</div>
+        <div class="review-avatar">LZ</div>
         <div>
-          <div class="review-name">Sofia L.</div>
-          <div class="review-date">Hace 1 mes</div>
+          <div class="review-name">Lazius</div>
+          <div class="review-meta">Google · hace 11 meses</div>
         </div>
       </div>
     </div>
+
     <div class="review-card reveal reveal-delay-2">
       <div class="review-stars">★★★★★</div>
-      <p class="review-text">"Grace Club es un lugar especial. Calidad top, discreción total y un equipo que te hace sentir bienvenido desde el primer momento. Volveré cada temporada."</p>
+      <p class="review-text">"Un ambiente increíble, personal muy amable y una selección de primer nivel. Sin duda el mejor club social de Ibiza."</p>
       <div class="review-author">
-        <div class="review-avatar">JR</div>
+        <div class="review-avatar">★</div>
         <div>
-          <div class="review-name">James R.</div>
-          <div class="review-date">Hace 3 semanas</div>
+          <div class="review-name">Socio Verificado</div>
+          <div class="review-meta">Google · Ibiza</div>
         </div>
       </div>
+    </div>
+
+  </div>
+
+  <div class="reviews-cta reveal" style="text-align:center;margin-top:56px;">
+    <div style="font-family:'Cinzel',serif;font-size:3rem;color:var(--gold);margin-bottom:8px;">4.5★</div>
+    <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px;">Basado en 41 reseñas de Google</div>
+    <a href="https://maps.app.goo.gl/ss89NPBra3GUqTi9A" target="_blank" class="btn-outline" style="font-size:.68rem;">Ver todas las reseñas en Google</a>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <p class="section-eyebrow reveal" data-i18n="loc_eyebrow">Encuéntranos</p>
+  <h2 class="section-title reveal" data-i18n="loc_title">Ubicación</h2>
+  <p class="section-sub reveal" data-i18n="loc_sub">En el centro de Eivissa, fácilmente accesible y discretamente situado.</p>
+  <div class="location-inner">
+    <div class="location-info reveal">
+      <h3>The Garden Ibiza</h3>
+      <div class="location-detail">
+        <span class="detail-icon">📍</span>
+        <div class="detail-text">
+          <strong data-i18n="loc_addr_label">Dirección</strong>
+          Carrer Pablo Picasso, 20<br>07800 Eivissa, Illes Balears
+        </div>
+      </div>
+      <div class="location-detail">
+        <span class="detail-icon">🕐</span>
+        <div class="detail-text">
+          <strong data-i18n="loc_hours_label">Horario</strong>
+          <span data-i18n="loc_hours">Lunes a Domingo · Hasta las 3:00 AM</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <span class="detail-icon">💬</span>
+        <div class="detail-text">
+          <strong data-i18n="loc_contact_label">Contacto</strong>
+          <span data-i18n="loc_contact">Vía WhatsApp para socios y nuevas solicitudes</span>
+        </div>
+      </div>
+      <div class="location-detail">
+        <span class="detail-icon">⚠️</span>
+        <div class="detail-text" style="font-size:.8rem;opacity:.7;" data-i18n="loc_disclaimer">
+          Club privado. Solo acceso a socios registrados mayores de 18 años.
+        </div>
+      </div>
+      <a href="https://wa.me/34637064533" class="btn-gold" style="margin-top:8px;" target="_blank" data-i18n="loc_wa">💬 Contactar por WhatsApp</a>
+      <a href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" target="_blank" class="btn-outline" style="margin-top:10px;">📷 Instagram</a>
+    </div>
+    <div class="map-container reveal reveal-delay-1">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.8!2d1.4318!3d38.9073!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x129943d63b0b0c1b%3A0x0!2sCarrer+Pablo+Picasso%2C+20%2C+Eivissa!5e0!3m2!1ses!2ses!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
-<section class="contact" id="contact">
+<!-- CONTACT -->
+<section id="contact">
   <div class="contact-inner">
-    <div class="adult-badge">🔞 Solo mayores de 18 años · Asociación privada</div>
-    <div class="section-tag reveal">Únete al club</div>
-    <h2 class="section-title reveal reveal-delay-1">Solicita tu <em>membresía</em></h2>
-    <p class="reveal reveal-delay-2">Rellena el formulario y nuestro equipo se pondrá en contacto contigo para completar el proceso de alta.</p>
-    <div class="form-grid reveal reveal-delay-2" id="contactForm">
-      <div class="form-group">
-        <label>Nombre *</label>
-        <input type="text" id="fname" placeholder="Tu nombre" required>
-      </div>
-      <div class="form-group">
-        <label>Apellidos *</label>
-        <input type="text" id="lname" placeholder="Tus apellidos" required>
-      </div>
-      <div class="form-group">
-        <label>Email *</label>
-        <input type="email" id="email" placeholder="tu@email.com" required>
-      </div>
-      <div class="form-group">
-        <label>Fecha de nacimiento *</label>
-        <input type="date" id="dob" required>
-      </div>
-      <div class="form-group">
-        <label>Teléfono</label>
-        <input type="tel" id="phone" placeholder="+34 600 000 000">
-      </div>
-      <div class="form-group">
-        <label>Ciudad / País</label>
-        <input type="text" id="city" placeholder="Barcelona, España">
-      </div>
-      <div class="form-group">
-        <label>¿Cuándo planeas visitarnos?</label>
-        <select id="month">
-          <option value="">Selecciona un mes</option>
-          <option>Enero</option><option>Febrero</option><option>Marzo</option>
-          <option>Abril</option><option>Mayo</option><option>Junio</option>
-          <option>Julio</option><option>Agosto</option><option>Septiembre</option>
-          <option>Octubre</option><option>Noviembre</option><option>Diciembre</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Tipo de usuario</label>
-        <select id="userType">
-          <option value="">Selecciona tipo</option>
-          <option>Recreativo</option>
-          <option>Medicinal</option>
-          <option>Ambos</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-submit reveal">
-      <button class="btn-form" onclick="submitForm()">Enviar solicitud</button>
-    </div>
-    <div class="form-success" id="formSuccess">
-      ✅ ¡Solicitud enviada! Nuestro equipo te contactará pronto. También puedes escribirnos directamente por WhatsApp.
-    </div>
-  </div>
-</section>
+    <p class="section-eyebrow reveal" data-i18n="contact_eyebrow">Únete</p>
+    <h2 class="section-title reveal" data-i18n="contact_title">¿Listo para ser socio?</h2>
+    <div class="gold-divider" style="margin-bottom:32px;"></div>
+    <p class="reveal" data-i18n="contact_body">El proceso de registro es sencillo, rápido y completamente confidencial. Rellena el formulario y te contactamos por WhatsApp.</p>
 
-<section class="location" id="location" style="padding:0">
-  <div class="location-info">
-    <div class="section-tag reveal">Encuéntranos</div>
-    <h2 class="section-title reveal reveal-delay-1">Visítanos en<br><em>Eivissa</em></h2>
-    <div class="location-detail reveal reveal-delay-1">
-      <div class="loc-icon">📍</div>
-      <div class="loc-text">
-        <strong>Dirección</strong>
-        <p>Carrer Pablo Picasso, 20<br>07800 Eivissa, Illes Balears</p>
-      </div>
-    </div>
-    <div class="location-detail reveal reveal-delay-2">
-      <div class="loc-icon">🕐</div>
-      <div class="loc-text">
-        <strong>Horario</strong>
-        <div class="hours-grid">
-          <div class="hours-row"><span>Todos los días</span><span>09:00 – 03:00</span></div>
+    <div class="contact-form reveal">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="form_name">Nombre</label>
+          <input type="text" id="f_name" data-i18n-ph="form_name_ph" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_phone">Teléfono</label>
+          <input type="tel" id="f_phone" data-i18n-ph="form_phone_ph" placeholder="+34 600 000 000">
         </div>
       </div>
-    </div>
-    <div class="location-detail reveal reveal-delay-3">
-      <div class="loc-icon">📱</div>
-      <div class="loc-text">
-        <strong>Contacto</strong>
-        <a href="https://wa.me/34637064533">+34 637 064 533 (WhatsApp)</a>
+      <div class="form-group">
+        <label data-i18n="form_email">Email</label>
+        <input type="email" id="f_email" data-i18n-ph="form_email_ph" placeholder="tu@email.com">
       </div>
+      <div class="form-group">
+        <label data-i18n="form_msg">Mensaje</label>
+        <textarea id="f_msg" rows="4" data-i18n-ph="form_msg_ph" placeholder="Cuéntanos sobre ti o haznos cualquier pregunta..."></textarea>
+      </div>
+      <div id="form_error" class="form-error" style="display:none;" data-i18n="form_error_text">Por favor rellena todos los campos.</div>
+      <button class="wa-button" onclick="sendToWhatsApp()" style="width:100%;justify-content:center;">
+        <span class="wa-icon">💬</span>
+        <span data-i18n="contact_wa">Solicitar Membresía por WhatsApp</span>
+      </button>
     </div>
-  </div>
-  <div class="location-map">
-    <iframe
-      src="https://www.openstreetmap.org/export/embed.html?bbox=1.4300,38.8950,1.4500,38.9150&layer=mapnik&marker=38.9050,1.4400"
-      title="Grace Weed Club location"
-      loading="lazy">
-    </iframe>
+
+    <p style="margin-top:28px;font-size:.7rem;letter-spacing:.1em;color:var(--text-muted);opacity:.5;" class="reveal" data-i18n="contact_disclaimer">Solo mayores de 18 años. Consumo responsable.</p>
   </div>
 </section>
 
-<div class="cta-strip reveal">
-  <h2>¿Listo para unirte a<br><em>Grace Weed Club</em>?</h2>
-  <p>Escríbenos por WhatsApp y resuelve todas tus dudas. Acceso rápido, fácil y discreto.</p>
-  <a class="btn-dark" href="https://wa.me/34637064533?text=Hola%20Grace%20Weed%20Club%2C%20quiero%20información%20sobre%20la%20membresía." target="_blank">💬 Contáctanos por WhatsApp</a>
-</div>
-
+<!-- FOOTER -->
 <footer>
   <div class="footer-top">
-    <div class="footer-brand">
-      <div class="nav-logo" style="margin-bottom:4px">
-        <div class="logo-leaf" style="background:none;box-shadow:none;overflow:hidden;">
-          <img src="https://i.imgur.com/z4p8tIm.jpeg" alt="Grace Weed Club Logo" style="width:42px;height:42px;object-fit:cover;border-radius:50% 5px 50% 5px;">
-        </div>
-        <div class="logo-text">
-          <strong>Grace Weed Club</strong>
-          <span>Cannabis Social Club · Ibiza</span>
-        </div>
-      </div>
-      <p>La asociación cannábica de referencia en Ibiza. Productos premium, asesoramiento experto y un espacio exclusivo donde la calidad y discreción son siempre la prioridad.</p>
-      <div class="footer-social" style="margin-top:18px">
-        <a class="social-btn" href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" target="_blank" aria-label="Instagram">📸</a>
-        <a class="social-btn" href="#" aria-label="Facebook">📘</a>
-        <a class="social-btn" href="https://wa.me/34637064533" aria-label="WhatsApp">💬</a>
-        <a class="social-btn" href="#" aria-label="Telegram">✈️</a>
-      </div>
+    <div class="footer-logo">THE GARDEN IBIZA</div>
+    <div class="footer-note">© 2025 The Garden Ibiza · Cannabis Social Club · Eivissa</div>
+    <div class="footer-lang-links">
+      <a href="#" onclick="setLang('es');return false;">ES</a>
+      <a href="#" onclick="setLang('en');return false;">EN</a>
+      <a href="#" onclick="setLang('fr');return false;">FR</a>
+      <a href="#" onclick="setLang('it');return false;">IT</a>
+      <a href="#" onclick="setLang('ar');return false;">AR</a>
     </div>
-    <div class="footer-col">
-      <h4>Navegación</h4>
-      <ul>
-        <li><a href="#about">Nosotros</a></li>
-        <li><a href="#experience">Experiencia</a></li>
-        <li><a href="#reviews">Reseñas</a></li>
-        <li><a href="#location">Ubicación</a></li>
-        <li><a href="#contact">Únete al club</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Club</h4>
-      <ul>
-        <li><a href="#contact">Membresía</a></li>
-        <li><a href="#experience">Variedades</a></li>
-        <li><a href="#experience">Eventos</a></li>
-        <li><a href="#location">Horarios</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contacto</h4>
-      <ul>
-        <li><a href="#">Carrer Pablo Picasso, 20</a></li>
-        <li><a href="#">07800 Eivissa, Balears</a></li>
-        <li><a href="https://wa.me/34637064533">+34 637 064 533</a></li>
-      </ul>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/clubgrace2.0ibiza?igsh=N2VwM2ZxeTlvZXdp&utm_source=qr" class="footer-ig" target="_blank" title="Instagram">📷</a>
+      <a href="https://wa.me/34637064533" class="footer-ig" target="_blank" title="WhatsApp">💬</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Grace Weed Club · Asociación privada · Todos los derechos reservados</p>
-    <div class="footer-legal">
-      <a href="#">Aviso Legal</a>
-      <a href="#">Privacidad</a>
-      <a href="#">Acceso +18</a>
-    </div>
+    <p class="footer-credit">
+      Website designed &amp; developed by <a href="https://herio.es" target="_blank">Herio Marketing Digital</a>
+    </p>
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    setTimeout(() => {
-      ring.style.left = e.clientX + 'px';
-      ring.style.top = e.clientY + 'px';
-    }, 60);
+// ── TRANSLATIONS ──
+const T = {
+  es: {
+    age_question:"¿Tienes 18 años o más?", age_yes:"Sí, soy mayor de edad", age_no:"No",
+    nav_club:"Club", nav_membership:"Membresía", nav_gallery:"Galería", nav_location:"Ubicación", nav_join:"Únete",
+    hero_eyebrow:"Cannabis Social Club · Eivissa", hero_sub:"Un refugio exclusivo en el corazón de la isla",
+    hero_cta1:"💬 Solicitar Membresía", hero_cta2:"Descubrir el Club",
+    about_title:"Un espacio para entendidos",
+    about_p1:"The Garden Ibiza es un club social privado ubicado en el Carrer Pablo Picasso, en el corazón de Eivissa. Un lugar donde la cultura cannábica se celebra con elegancia, privacidad y respeto.",
+    about_p2:"Nuestros socios disfrutan de un ambiente cuidado, selección premium de variedades y una comunidad que comparte valores de bienestar y autenticidad.",
+    about_quote:"Exclusividad, discreción y calidad — sin concesiones.",
+    stat1:"Valoración Google", stat2:"Opiniones", stat3:"Días abierto", stat4:"Buenos momentos",
+    mem_eyebrow:"Acceso al Club", mem_title:"Planes de Membresía",
+    mem_sub:"Elige el plan que mejor se adapta a tus necesidades. Todos incluyen acceso completo al club y a nuestra selección premium.",
+    card1_name:"Socio Básico", card2_name:"Socio Premium", card3_name:"Socio VIP",
+    card_price:"Consultar", card_period:"Precio por membresía", btn_request:"Solicitar",
+    c1f1:"Acceso al club", c1f2:"Selección estándar", c1f3:"Wi-Fi incluido", c1f4:"Zona de descanso",
+    c2f1:"Todo lo básico", c2f2:"Variedades exclusivas", c2f3:"Sala privada", c2f4:"Eventos VIP", c2f5:"Asesoramiento personal",
+    c3f1:"Todo lo Premium", c3f2:"Acceso prioritario", c3f3:"Reservas privadas", c3f4:"Eventos exclusivos", c3f5:"Colección limitada",
+    gal_eyebrow:"Nuestro Espacio", gal_title:"El Ambiente",
+    gal_sub:"Un interior diseñado para la calma, la conversación y el placer de los sentidos.",
+    img1:"El Jardín Interior", img2:"Zona Lounge", img3:"Selección Premium", img4:"Área Privada", img5:"Bar & Relax",
+    loc_eyebrow:"Encuéntranos", loc_title:"Ubicación",
+    loc_sub:"En el centro de Eivissa, fácilmente accesible y discretamente situado.",
+    loc_addr_label:"Dirección", loc_hours_label:"Horario", loc_contact_label:"Contacto",
+    loc_hours:"Lunes a Domingo · Hasta las 3:00 AM",
+    loc_contact:"Vía WhatsApp para socios y nuevas solicitudes",
+    loc_disclaimer:"Club privado. Solo acceso a socios registrados mayores de 18 años.",
+    loc_wa:"💬 Contactar por WhatsApp",
+    contact_eyebrow:"Únete", contact_title:"¿Listo para ser socio?",
+    contact_body:"El proceso de registro es sencillo, rápido y completamente confidencial. Escríbenos por WhatsApp y te guiamos en cada paso.",
+    contact_wa:"💬 Solicitar Membresía por WhatsApp",
+    contact_disclaimer:"Solo mayores de 18 años. Consumo responsable.",
+    form_name:"Nombre", form_name_ph:"Tu nombre",
+    form_phone:"Teléfono", form_phone_ph:"+34 600 000 000",
+    form_email:"Email", form_email_ph:"tu@email.com",
+    form_msg:"Mensaje", form_msg_ph:"Cuéntanos sobre ti o haznos cualquier pregunta...",
+    form_error_text:"Por favor rellena todos los campos.",
+    wa_form_name:"Nombre", wa_form_phone:"Teléfono", wa_form_email:"Email"
+  },
+  en: {
+    age_question:"Are you 18 or older?", age_yes:"Yes, I am of legal age", age_no:"No",
+    nav_club:"Club", nav_membership:"Membership", nav_gallery:"Gallery", nav_location:"Location", nav_join:"Join",
+    hero_eyebrow:"Cannabis Social Club · Eivissa", hero_sub:"An exclusive retreat in the heart of the island",
+    hero_cta1:"💬 Request Membership", hero_cta2:"Discover the Club",
+    about_title:"A space for connoisseurs",
+    about_p1:"The Garden Ibiza is a private social club located on Carrer Pablo Picasso, in the heart of Eivissa. A place where cannabis culture is celebrated with elegance, privacy and respect.",
+    about_p2:"Our members enjoy a carefully curated environment, a premium selection of strains and a community that shares values of wellness and authenticity.",
+    about_quote:"Exclusivity, discretion and quality — without compromise.",
+    stat1:"Google Rating", stat2:"Reviews", stat3:"Days open", stat4:"Great moments",
+    mem_eyebrow:"Club Access", mem_title:"Membership Plans",
+    mem_sub:"Choose the plan that best suits your needs. All include full access to the club and our premium selection.",
+    card1_name:"Basic Member", card2_name:"Premium Member", card3_name:"VIP Member",
+    card_price:"Enquire", card_period:"Price per membership", btn_request:"Apply",
+    c1f1:"Club access", c1f2:"Standard selection", c1f3:"Wi-Fi included", c1f4:"Relaxation area",
+    c2f1:"Everything in Basic", c2f2:"Exclusive strains", c2f3:"Private lounge", c2f4:"VIP events", c2f5:"Personal advice",
+    c3f1:"Everything in Premium", c3f2:"Priority access", c3f3:"Private bookings", c3f4:"Exclusive events", c3f5:"Limited collection",
+    gal_eyebrow:"Our Space", gal_title:"The Atmosphere",
+    gal_sub:"An interior designed for calm, conversation and the pleasure of the senses.",
+    img1:"The Indoor Garden", img2:"Lounge Area", img3:"Premium Selection", img4:"Private Area", img5:"Bar & Relax",
+    loc_eyebrow:"Find Us", loc_title:"Location",
+    loc_sub:"In the centre of Eivissa, easily accessible and discreetly situated.",
+    loc_addr_label:"Address", loc_hours_label:"Hours", loc_contact_label:"Contact",
+    loc_hours:"Monday to Sunday · Until 3:00 AM",
+    loc_contact:"Via WhatsApp for members and new applications",
+    loc_disclaimer:"Private club. Access only for registered members aged 18 and over.",
+    loc_wa:"💬 Contact via WhatsApp",
+    contact_eyebrow:"Join Us", contact_title:"Ready to become a member?",
+    contact_body:"The registration process is simple, fast and completely confidential. Message us on WhatsApp and we will guide you every step of the way.",
+    contact_wa:"💬 Request Membership via WhatsApp",
+    contact_disclaimer:"Over 18s only. Consume responsibly.",
+    form_name:"Name", form_name_ph:"Your name",
+    form_phone:"Phone", form_phone_ph:"+34 600 000 000",
+    form_email:"Email", form_email_ph:"you@email.com",
+    form_msg:"Message", form_msg_ph:"Tell us about yourself or ask us anything...",
+    form_error_text:"Please fill in all fields.",
+    wa_form_name:"Name", wa_form_phone:"Phone", wa_form_email:"Email"
+  },
+  fr: {
+    age_question:"Avez-vous 18 ans ou plus ?", age_yes:"Oui, je suis majeur(e)", age_no:"Non",
+    nav_club:"Club", nav_membership:"Adhésion", nav_gallery:"Galerie", nav_location:"Localisation", nav_join:"Rejoindre",
+    hero_eyebrow:"Club Social Cannabis · Eivissa", hero_sub:"Un refuge exclusif au cœur de l'île",
+    hero_cta1:"💬 Demander une adhésion", hero_cta2:"Découvrir le Club",
+    about_title:"Un espace pour les connaisseurs",
+    about_p1:"The Garden Ibiza est un club social privé situé au Carrer Pablo Picasso, au cœur d'Eivissa. Un lieu où la culture du cannabis se célèbre avec élégance, intimité et respect.",
+    about_p2:"Nos membres profitent d'un environnement soigné, d'une sélection premium de variétés et d'une communauté qui partage des valeurs de bien-être et d'authenticité.",
+    about_quote:"Exclusivité, discrétion et qualité — sans compromis.",
+    stat1:"Note Google", stat2:"Avis", stat3:"Jours ouverts", stat4:"Bons moments",
+    mem_eyebrow:"Accès au Club", mem_title:"Plans d'adhésion",
+    mem_sub:"Choisissez le plan qui correspond le mieux à vos besoins. Tous incluent un accès complet au club et à notre sélection premium.",
+    card1_name:"Membre Basique", card2_name:"Membre Premium", card3_name:"Membre VIP",
+    card_price:"Renseignements", card_period:"Prix par adhésion", btn_request:"Postuler",
+    c1f1:"Accès au club", c1f2:"Sélection standard", c1f3:"Wi-Fi inclus", c1f4:"Espace détente",
+    c2f1:"Tout le Basique", c2f2:"Variétés exclusives", c2f3:"Salon privé", c2f4:"Événements VIP", c2f5:"Conseil personnalisé",
+    c3f1:"Tout le Premium", c3f2:"Accès prioritaire", c3f3:"Réservations privées", c3f4:"Événements exclusifs", c3f5:"Collection limitée",
+    gal_eyebrow:"Notre Espace", gal_title:"L'Ambiance",
+    gal_sub:"Un intérieur conçu pour le calme, la conversation et le plaisir des sens.",
+    img1:"Le Jardin Intérieur", img2:"Zone Lounge", img3:"Sélection Premium", img4:"Espace Privé", img5:"Bar & Détente",
+    loc_eyebrow:"Nous Trouver", loc_title:"Localisation",
+    loc_sub:"Au centre d'Eivissa, facilement accessible et discrètement situé.",
+    loc_addr_label:"Adresse", loc_hours_label:"Horaires", loc_contact_label:"Contact",
+    loc_hours:"Lundi au Dimanche · Jusqu'à 3h00",
+    loc_contact:"Via WhatsApp pour les membres et nouvelles demandes",
+    loc_disclaimer:"Club privé. Accès réservé aux membres inscrits de 18 ans et plus.",
+    loc_wa:"💬 Contacter via WhatsApp",
+    contact_eyebrow:"Rejoignez-nous", contact_title:"Prêt(e) à devenir membre ?",
+    contact_body:"Le processus d'inscription est simple, rapide et totalement confidentiel. Écrivez-nous sur WhatsApp et nous vous guidons à chaque étape.",
+    contact_wa:"💬 Demander une adhésion via WhatsApp",
+    contact_disclaimer:"Réservé aux plus de 18 ans. Consommation responsable."
+  },
+  it: {
+    age_question:"Hai 18 anni o più?", age_yes:"Sì, sono maggiorenne", age_no:"No",
+    nav_club:"Club", nav_membership:"Iscrizione", nav_gallery:"Galleria", nav_location:"Posizione", nav_join:"Unisciti",
+    hero_eyebrow:"Club Sociale Cannabis · Eivissa", hero_sub:"Un rifugio esclusivo nel cuore dell'isola",
+    hero_cta1:"💬 Richiedi Iscrizione", hero_cta2:"Scopri il Club",
+    about_title:"Uno spazio per intenditori",
+    about_p1:"The Garden Ibiza è un club sociale privato situato al Carrer Pablo Picasso, nel cuore di Eivissa. Un luogo dove la cultura della cannabis si celebra con eleganza, riservatezza e rispetto.",
+    about_p2:"I nostri soci godono di un ambiente curato, una selezione premium di varietà e una comunità che condivide valori di benessere e autenticità.",
+    about_quote:"Esclusività, discrezione e qualità — senza compromessi.",
+    stat1:"Valutazione Google", stat2:"Recensioni", stat3:"Giorni aperti", stat4:"Momenti speciali",
+    mem_eyebrow:"Accesso al Club", mem_title:"Piani di Iscrizione",
+    mem_sub:"Scegli il piano più adatto alle tue esigenze. Tutti includono accesso completo al club e alla nostra selezione premium.",
+    card1_name:"Socio Base", card2_name:"Socio Premium", card3_name:"Socio VIP",
+    card_price:"Informazioni", card_period:"Prezzo per iscrizione", btn_request:"Richiedi",
+    c1f1:"Accesso al club", c1f2:"Selezione standard", c1f3:"Wi-Fi incluso", c1f4:"Area relax",
+    c2f1:"Tutto il Base", c2f2:"Varietà esclusive", c2f3:"Sala privata", c2f4:"Eventi VIP", c2f5:"Consulenza personale",
+    c3f1:"Tutto il Premium", c3f2:"Accesso prioritario", c3f3:"Prenotazioni private", c3f4:"Eventi esclusivi", c3f5:"Collezione limitata",
+    gal_eyebrow:"Il Nostro Spazio", gal_title:"L'Atmosfera",
+    gal_sub:"Un interno progettato per la calma, la conversazione e il piacere dei sensi.",
+    img1:"Il Giardino Interno", img2:"Area Lounge", img3:"Selezione Premium", img4:"Area Privata", img5:"Bar & Relax",
+    loc_eyebrow:"Trovaci", loc_title:"Posizione",
+    loc_sub:"Nel centro di Eivissa, facilmente raggiungibile e discretamente situato.",
+    loc_addr_label:"Indirizzo", loc_hours_label:"Orari", loc_contact_label:"Contatto",
+    loc_hours:"Lunedì a Domenica · Fino alle 3:00",
+    loc_contact:"Via WhatsApp per soci e nuove richieste",
+    loc_disclaimer:"Club privato. Accesso solo ai soci registrati di 18 anni e oltre.",
+    loc_wa:"💬 Contatta via WhatsApp",
+    contact_eyebrow:"Unisciti", contact_title:"Pronto a diventare socio?",
+    contact_body:"Il processo di registrazione è semplice, rapido e completamente riservato. Scrivici su WhatsApp e ti guidiamo in ogni passo.",
+    contact_wa:"💬 Richiedi Iscrizione via WhatsApp",
+    contact_disclaimer:"Solo maggiorenni. Consumo responsabile."
+  },
+  ar: {
+    age_question:"هل عمرك ١٨ عامًا أو أكثر؟", age_yes:"نعم، أنا بالغ", age_no:"لا",
+    nav_club:"النادي", nav_membership:"العضوية", nav_gallery:"معرض الصور", nav_location:"الموقع", nav_join:"انضم",
+    hero_eyebrow:"نادي القنب الاجتماعي · إيبيزا", hero_sub:"ملاذ حصري في قلب الجزيرة",
+    hero_cta1:"💬 طلب العضوية", hero_cta2:"اكتشف النادي",
+    about_title:"مساحة لعشاق الجودة",
+    about_p1:"The Garden Ibiza نادٍ اجتماعي خاص يقع في شارع Pablo Picasso، في قلب مدينة إيبيزا. مكان يُحتفى فيه بثقافة القنب بأناقة وخصوصية واحترام.",
+    about_p2:"يستمتع أعضاؤنا بأجواء مميزة وتشكيلة متميزة من الأصناف ومجتمع يشاطرنا قيم الرفاهية والأصالة.",
+    about_quote:"حصرية، سرية وجودة — بلا تنازلات.",
+    stat1:"تقييم جوجل", stat2:"آراء", stat3:"أيام الفتح", stat4:"لحظات رائعة",
+    mem_eyebrow:"الدخول إلى النادي", mem_title:"خطط العضوية",
+    mem_sub:"اختر الخطة التي تناسبك. جميعها تشمل الوصول الكامل للنادي وتشكيلتنا المتميزة.",
+    card1_name:"عضو أساسي", card2_name:"عضو بريميوم", card3_name:"عضو VIP",
+    card_price:"استفسار", card_period:"سعر العضوية", btn_request:"تقدم بطلب",
+    c1f1:"الدخول للنادي", c1f2:"تشكيلة قياسية", c1f3:"واي فاي مجاني", c1f4:"منطقة الاسترخاء",
+    c2f1:"كل شيء في الأساسي", c2f2:"أصناف حصرية", c2f3:"صالة خاصة", c2f4:"فعاليات VIP", c2f5:"استشارة شخصية",
+    c3f1:"كل شيء في بريميوم", c3f2:"وصول أولوية", c3f3:"حجوزات خاصة", c3f4:"فعاليات حصرية", c3f5:"مجموعة محدودة",
+    gal_eyebrow:"مساحتنا", gal_title:"الأجواء",
+    gal_sub:"تصميم داخلي يبعث على الهدوء والحوار والمتعة الحسية.",
+    img1:"الحديقة الداخلية", img2:"منطقة اللاونج", img3:"التشكيلة المتميزة", img4:"المنطقة الخاصة", img5:"البار والاسترخاء",
+    loc_eyebrow:"جدنا", loc_title:"الموقع",
+    loc_sub:"في وسط إيبيزا، سهل الوصول وموقعه يكفل الخصوصية.",
+    loc_addr_label:"العنوان", loc_hours_label:"المواعيد", loc_contact_label:"التواصل",
+    loc_hours:"من الإثنين إلى الأحد · حتى الساعة ٣:٠٠ صباحًا",
+    loc_contact:"عبر واتساب للأعضاء والطلبات الجديدة",
+    loc_disclaimer:"نادٍ خاص. الدخول للأعضاء المسجلين فوق ١٨ عامًا فقط.",
+    loc_wa:"💬 تواصل عبر واتساب",
+    contact_eyebrow:"انضم إلينا", contact_title:"هل أنت مستعد لتصبح عضوًا؟",
+    contact_body:"عملية التسجيل بسيطة وسريعة وسرية تمامًا. راسلنا على واتساب وسنرشدك في كل خطوة.",
+    contact_wa:"💬 طلب العضوية عبر واتساب",
+    contact_disclaimer:"للبالغين فقط فوق ١٨ عامًا. استخدام مسؤول."
+  }
+};
+
+const LANGS = {
+  es:{ flag:'🇪🇸', code:'ES', dir:'ltr' },
+  en:{ flag:'🇬🇧', code:'EN', dir:'ltr' },
+  fr:{ flag:'🇫🇷', code:'FR', dir:'ltr' },
+  it:{ flag:'🇮🇹', code:'IT', dir:'ltr' },
+  ar:{ flag:'🇲🇦', code:'AR', dir:'rtl' }
+};
+
+let currentLang = 'es';
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  currentLang = lang;
+  const html = document.documentElement;
+  html.setAttribute('lang', lang);
+  html.setAttribute('dir', LANGS[lang].dir);
+
+  // update all translated elements
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
   });
 
-  // ─── Lightbox (5 imágenes, Xem7zBx eliminada)
-  const galleryImgs = [
-    'https://i.imgur.com/iBJPs2I.jpeg',
-    'https://i.imgur.com/bG6u7UQ.jpg',
-    'https://i.imgur.com/elzOpot.png',
-    'https://i.imgur.com/t0u1SLJ.png'
-  ];
-  let currentImg = 0;
-  function openLightbox(idx) {
-    currentImg = idx;
-    document.getElementById('lightboxImg').src = galleryImgs[idx];
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLightbox(e) {
-    if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
-      document.getElementById('lightbox').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  }
-  function changeLightbox(dir) {
-    currentImg = (currentImg + dir + galleryImgs.length) % galleryImgs.length;
-    document.getElementById('lightboxImg').src = galleryImgs[currentImg];
-  }
-  document.addEventListener('keydown', e => {
-    if (document.getElementById('lightbox').classList.contains('open')) {
-      if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
-      if (e.key === 'ArrowRight') changeLightbox(1);
-      if (e.key === 'ArrowLeft') changeLightbox(-1);
-    }
+  // update switcher
+  document.getElementById('langFlag').textContent = LANGS[lang].flag;
+  document.getElementById('langCode').textContent = LANGS[lang].code;
+
+  // update active state
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('onclick').includes("'"+lang+"'"));
   });
 
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+  closeLangDropdown();
+  return false;
+}
+
+function toggleLang() {
+  document.getElementById('langSwitcher').classList.toggle('open');
+}
+function closeLangDropdown() {
+  document.getElementById('langSwitcher').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  if (!document.getElementById('langSwitcher').contains(e.target)) closeLangDropdown();
+});
+
+// ── WHATSAPP FORM ──
+function sendToWhatsApp() {
+  const name  = document.getElementById('f_name').value.trim();
+  const phone = document.getElementById('f_phone').value.trim();
+  const email = document.getElementById('f_email').value.trim();
+  const msg   = document.getElementById('f_msg').value.trim();
+  const err   = document.getElementById('form_error');
+
+  if (!name || !phone || !email || !msg) {
+    err.style.display = 'block';
+    return;
+  }
+  err.style.display = 'none';
+
+  const t = T[currentLang];
+  const text = `${t.wa_form_name}: ${name}%0A${t.wa_form_phone}: ${phone}%0A${t.wa_form_email}: ${email}%0A%0A${msg}`;
+  window.open(`https://wa.me/34637064533?text=${text}`, '_blank');
+}
+
+
+function enterSite(e) {
+  e.preventDefault();
+  document.getElementById('ageGate').classList.add('hidden');
+  sessionStorage.setItem('ageVerified','1');
+}
+if (sessionStorage.getItem('ageVerified')) {
+  document.getElementById('ageGate').classList.add('hidden');
+}
+
+// ── CURSOR ──
+const dot  = document.getElementById('cursorDot').firstElementChild;
+const ring = document.getElementById('cursorRing').firstElementChild;
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+(function animate(){
+  rx += (mx-rx)*.18; ry += (my-ry)*.18;
+  dot.style.cssText  = `transform:translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  ring.style.cssText = `transform:translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+  requestAnimationFrame(animate);
+})();
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 60);
+});
+
+// ── REVEAL ──
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);}});
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ── LIGHTBOX ──
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    if(img){ document.getElementById('lightboxImg').src=img.src; document.getElementById('lightbox').classList.add('active'); }
   });
-
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-  function animateCounter(el) {
-    const target = parseInt(el.dataset.target);
-    const duration = 1800;
-    const step = target / (duration / 16);
-    let current = 0;
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = Math.floor(current).toLocaleString('es-ES');
-      if (current >= target) {
-        el.textContent = target.toLocaleString('es-ES') + (target === 4541 ? '' : '+');
-        clearInterval(timer);
-      }
-    }, 16);
-  }
-
-  const revealEls = document.querySelectorAll('.reveal');
-  const counters = document.querySelectorAll('.stat-num');
-  let countersTriggered = false;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  revealEls.forEach(el => observer.observe(el));
-
-  const statsObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !countersTriggered) {
-      countersTriggered = true;
-      counters.forEach(animateCounter);
-    }
-  }, { threshold: 0.5 });
-
-  const statsBar = document.querySelector('.stats-bar');
-  if (statsBar) statsObserver.observe(statsBar);
-
-  function submitForm() {
-    const name = document.getElementById('fname').value;
-    const email = document.getElementById('email').value;
-    const dob = document.getElementById('dob').value;
-    if (!name || !email || !dob) {
-      alert('Por favor, rellena los campos obligatorios (nombre, email y fecha de nacimiento).');
-      return;
-    }
-    const birthDate = new Date(dob);
-    const age = Math.floor((new Date() - birthDate) / (365.25 * 24 * 60 * 60 * 1000));
-    if (age < 18) {
-      alert('Debes ser mayor de 18 años para unirte al club.');
-      return;
-    }
-    document.getElementById('contactForm').style.display = 'none';
-    document.querySelector('.form-submit').style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-    const msg = encodeURIComponent(`Hola Grace Weed Club, soy ${name} y quiero información sobre la membresía.`);
-    setTimeout(() => window.open(`https://wa.me/34637064533?text=${msg}`, '_blank'), 800);
-  }
-
-  const scrollTopBtn = document.getElementById('scrollTop');
-  window.addEventListener('scroll', () => {
-    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-
-  let langOpen = false;
-  function toggleLang() {
-    langOpen = !langOpen;
-    document.getElementById('langOptions').classList.toggle('open', langOpen);
-  }
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.lang-switcher')) {
-      langOpen = false;
-      document.getElementById('langOptions').classList.remove('open');
-    }
-  });
-
-  const translations = {
-    es: {
-      dir: 'ltr',
-      navAbout: 'Nosotros', navExp: 'Experiencia', navGallery: 'Galería',
-      navReviews: 'Reseñas', navLocation: 'Ubicación', navIG: 'Instagram', navJoin: 'Únete',
-      heroBadge: 'Club Privado · 4.541 Reseñas ⭐',
-      heroH1: 'Bienvenido a<br><em>Grace</em> <span class="gold">Weed</span> Club',
-      heroSub: 'La asociación cannábica de referencia en Ibiza. Productos de alta gama, ambiente sofisticado y una comunidad exclusiva en el corazón de Platja d\'en Bossa.',
-      heroBtn1: 'Solicitar Membresía', heroBtn2: 'Descubrir más',
-      statL1:'Reseñas Google', statL2:'Miembros activos', statL3:'Variedades premium', statL4:'Días al año',
-      aboutTag:'Quiénes somos',
-      aboutTitle:'El lado más <em>sofisticado</em><br>del cannabis en Ibiza',
-      aboutP1:'Ubicado en Platja d\'en Bossa, Grace Club 2.0 ofrece una experiencia de cannabis de primer nivel. Como asociación cannábica en Ibiza, proporcionamos productos de alta gama en un entorno cálido, seguro y cuidadosamente diseñado para el disfrute.',
-      aboutP2:'Únete a nuestra comunidad y disfruta de asesoramiento personalizado, eventos exclusivos y un espacio donde la calidad es siempre la prioridad.',
-      pilTag:'Nuestros pilares', pilTitle:'<em>Calidad, Ubicación</em><br>y Buen Ambiente',
-      pil1T:'Calidad', pil1P:'Todo es seleccionado a mano por un equipo de expertos para garantizar los más altos estándares. Sólo lo mejor llega a nuestros miembros.',
-      pil2T:'Ubicación', pil2P:'Perfectamente situado en Carrer Pablo Picasso, en el corazón de Eivissa, cerca de todo lo que hace única a Ibiza.',
-      pil3T:'Ambiente', pil3P:'Ibiza tiene uno de los ambientes más vibrantes del mundo. Reproducimos ese espíritu en nuestra comunidad.',
-      galTag:'Galería', galTitle:'Vive la <em>experiencia</em><br>Grace Club', galIG:'📸 Síguenos en Instagram @clubgrace2.0ibiza',
-      expTag:'Experiencia', expTitle:'Así es tu <em>experiencia</em><br>en <span style="color:var(--gold-light)">Grace Club</span>',
-      exp1T:'Solicita tu membresía', exp1P:'Rellena el formulario o contáctanos por WhatsApp.',
-      exp2T:'Descubre nuestra selección', exp2P:'Más de 30 variedades premium seleccionadas por nuestros expertos.',
-      exp3T:'Asesoramiento personalizado', exp3P:'Nuestro equipo te orienta sobre las mejores opciones.',
-      exp4T:'Disfruta y conecta', exp4P:'Un espacio único para relajarte y vivir eventos exclusivos.',
-      revTag:'Comunidad', revTitle:'Lo que dicen<br>nuestros <em>miembros</em>',
-      revSub:'4.5 · Más de 4.541 reseñas en Google',
-      rev1:'"El mejor club cannábico de Ibiza sin duda. El personal es increíblemente amable y la selección de productos es de primera."',
-      rev2:'"Ambiente exclusivo y relajado. La atención personalizada que recibí fue excepcional."',
-      rev3:'"Grace Club es un lugar especial. Calidad top, discreción total y un equipo que te hace sentir bienvenido."',
-      ctaJoin:'Únete al club',
-      contactTag:'Únete al club', contactTitle:'Solicita tu <em>membresía</em>',
-      contactSub:'Rellena el formulario y nuestro equipo se pondrá en contacto contigo.',
-      locTag:'Encuéntranos', locTitle:'Visítanos en<br><em>Eivissa</em>',
-      hours:'Todos los días · 09:00 – 03:00',
-      ctaH:'¿Listo para unirte a<br><em>Grace Weed Club</em>?',
-      ctaP:'Escríbenos por WhatsApp y resuelve todas tus dudas.',
-      ctaBtn:'💬 Contáctanos por WhatsApp',
-    },
-    en: {
-      dir: 'ltr',
-      navAbout:'About', navExp:'Experience', navGallery:'Gallery',
-      navReviews:'Reviews', navLocation:'Location', navIG:'Instagram', navJoin:'Join',
-      heroBadge:'Private Club · 4,541 Reviews ⭐',
-      heroH1:'Welcome to<br><em>Grace</em> <span class="gold">Weed</span> Club',
-      heroSub:'The reference cannabis association in Ibiza. Premium products, sophisticated atmosphere and an exclusive community at the heart of Platja d\'en Bossa.',
-      heroBtn1:'Request Membership', heroBtn2:'Discover more',
-      statL1:'Google Reviews', statL2:'Active members', statL3:'Premium strains', statL4:'Days a year',
-      aboutTag:'Who we are',
-      aboutTitle:'The most <em>sophisticated</em><br>side of cannabis in Ibiza',
-      aboutP1:'Located in Platja d\'en Bossa, Grace Club 2.0 offers a top-tier cannabis experience. As a cannabis association in Ibiza, we provide premium products in a warm, safe environment.',
-      aboutP2:'Join our community and enjoy personalised advice, exclusive events and a space where quality is always the priority.',
-      pilTag:'Our pillars', pilTitle:'<em>Quality, Location</em><br>and Great Atmosphere',
-      pil1T:'Quality', pil1P:'Everything is hand-picked by a team of experts to ensure the highest standards.',
-      pil2T:'Location', pil2P:'Perfectly situated on Carrer Pablo Picasso, in the heart of Eivissa.',
-      pil3T:'Atmosphere', pil3P:'Ibiza has one of the most vibrant atmospheres in the world. We recreate that spirit in our community.',
-      galTag:'Gallery', galTitle:'Live the <em>experience</em><br>Grace Club', galIG:'📸 Follow us on Instagram @clubgrace2.0ibiza',
-      expTag:'Experience', expTitle:'Your <em>experience</em><br>at <span style="color:var(--gold-light)">Grace Club</span>',
-      exp1T:'Request your membership', exp1P:'Fill in the form or contact us via WhatsApp.',
-      exp2T:'Discover our selection', exp2P:'Over 30 premium strains selected by our experts.',
-      exp3T:'Personalised advice', exp3P:'Our team guides you on the best options for your preferences.',
-      exp4T:'Enjoy and connect', exp4P:'A unique space to relax and enjoy exclusive events.',
-      revTag:'Community', revTitle:'What our <em>members</em><br>say',
-      revSub:'4.5 · Over 4,541 Google reviews',
-      rev1:'"Undoubtedly the best cannabis club in Ibiza. The staff is incredibly friendly and the product selection is top-notch."',
-      rev2:'"Exclusive and relaxed atmosphere. The personalised attention I received was exceptional."',
-      rev3:'"Grace Club is a special place. Top quality, total discretion and a team that makes you feel welcome."',
-      ctaJoin:'Join the club',
-      contactTag:'Join the club', contactTitle:'Request your <em>membership</em>',
-      contactSub:'Fill in the form and our team will get in touch to complete your registration.',
-      locTag:'Find us', locTitle:'Visit us in<br><em>Eivissa</em>',
-      hours:'Every day · 09:00 – 03:00',
-      ctaH:'Ready to join<br><em>Grace Weed Club</em>?',
-      ctaP:'Message us on WhatsApp and get all your questions answered.',
-      ctaBtn:'💬 Contact us on WhatsApp',
-    },
-    it: {
-      dir: 'ltr',
-      navAbout:'Chi siamo', navExp:'Esperienza', navGallery:'Galleria',
-      navReviews:'Recensioni', navLocation:'Posizione', navIG:'Instagram', navJoin:'Iscriviti',
-      heroBadge:'Club Privato · 4.541 Recensioni ⭐',
-      heroH1:'Benvenuto a<br><em>Grace</em> <span class="gold">Weed</span> Club',
-      heroSub:'L\'associazione cannabis di riferimento a Ibiza. Prodotti premium, atmosfera sofisticata e una comunità esclusiva nel cuore di Platja d\'en Bossa.',
-      heroBtn1:'Richiedi Iscrizione', heroBtn2:'Scopri di più',
-      statL1:'Recensioni Google', statL2:'Membri attivi', statL3:'Varietà premium', statL4:'Giorni all\'anno',
-      aboutTag:'Chi siamo',
-      aboutTitle:'Il lato più <em>sofisticato</em><br>della cannabis a Ibiza',
-      aboutP1:'Situato a Platja d\'en Bossa, Grace Club 2.0 offre un\'esperienza cannabis di primo livello.',
-      aboutP2:'Unisciti alla nostra comunità e goditi consulenza personalizzata, eventi esclusivi e uno spazio dove la qualità è sempre la priorità.',
-      pilTag:'I nostri pilastri', pilTitle:'<em>Qualità, Posizione</em><br>e Grande Atmosfera',
-      pil1T:'Qualità', pil1P:'Tutto viene selezionato a mano da esperti per garantire i più alti standard.',
-      pil2T:'Posizione', pil2P:'Perfettamente situato in Carrer Pablo Picasso nel cuore di Eivissa.',
-      pil3T:'Atmosfera', pil3P:'Ibiza ha una delle atmosfere più vibranti del mondo. Riproduciamo quello spirito nella nostra comunità.',
-      galTag:'Galleria', galTitle:'Vivi l\'<em>esperienza</em><br>Grace Club', galIG:'📸 Seguici su Instagram @clubgrace2.0ibiza',
-      expTag:'Esperienza', expTitle:'La tua <em>esperienza</em><br>al <span style="color:var(--gold-light)">Grace Club</span>',
-      exp1T:'Richiedi la tua iscrizione', exp1P:'Compila il modulo o contattaci via WhatsApp.',
-      exp2T:'Scopri la nostra selezione', exp2P:'Oltre 30 varietà premium selezionate dai nostri esperti.',
-      exp3T:'Consulenza personalizzata', exp3P:'Il nostro team ti guida sulle migliori opzioni.',
-      exp4T:'Goditi e connettiti', exp4P:'Uno spazio unico per rilassarsi e vivere eventi esclusivi.',
-      revTag:'Comunità', revTitle:'Cosa dicono<br>i nostri <em>membri</em>',
-      revSub:'4.5 · Oltre 4.541 recensioni su Google',
-      rev1:'"Senza dubbio il miglior club cannabis di Ibiza."',
-      rev2:'"Atmosfera esclusiva e rilassata. L\'attenzione personalizzata è stata eccezionale."',
-      rev3:'"Grace Club è un posto speciale. Qualità top, totale discrezione."',
-      ctaJoin:'Unisciti al club',
-      contactTag:'Unisciti al club', contactTitle:'Richiedi la tua <em>iscrizione</em>',
-      contactSub:'Compila il modulo e il nostro team ti contatterà per completare la registrazione.',
-      locTag:'Trovaci', locTitle:'Visitaci a<br><em>Eivissa</em>',
-      hours:'Tutti i giorni · 09:00 – 03:00',
-      ctaH:'Pronto ad unirti a<br><em>Grace Weed Club</em>?',
-      ctaP:'Scrivici su WhatsApp e risolvi tutti i tuoi dubbi.',
-      ctaBtn:'💬 Contattaci su WhatsApp',
-    },
-    fr: {
-      dir: 'ltr',
-      navAbout:'À propos', navExp:'Expérience', navGallery:'Galerie',
-      navReviews:'Avis', navLocation:'Localisation', navIG:'Instagram', navJoin:'Rejoindre',
-      heroBadge:'Club Privé · 4 541 Avis ⭐',
-      heroH1:'Bienvenue au<br><em>Grace</em> <span class="gold">Weed</span> Club',
-      heroSub:'L\'association cannabis de référence à Ibiza. Produits haut de gamme, ambiance sophistiquée et communauté exclusive au cœur de Platja d\'en Bossa.',
-      heroBtn1:'Demander une adhésion', heroBtn2:'En savoir plus',
-      statL1:'Avis Google', statL2:'Membres actifs', statL3:'Variétés premium', statL4:'Jours par an',
-      aboutTag:'Qui sommes-nous',
-      aboutTitle:'Le côté le plus <em>sophistiqué</em><br>du cannabis à Ibiza',
-      aboutP1:'Situé à Platja d\'en Bossa, Grace Club 2.0 offre une expérience cannabis de premier plan.',
-      aboutP2:'Rejoignez notre communauté et profitez de conseils personnalisés, d\'événements exclusifs et d\'un espace où la qualité est toujours la priorité.',
-      pilTag:'Nos piliers', pilTitle:'<em>Qualité, Emplacement</em><br>et Bonne Ambiance',
-      pil1T:'Qualité', pil1P:'Tout est sélectionné à la main par une équipe d\'experts pour garantir les plus hauts standards.',
-      pil2T:'Emplacement', pil2P:'Parfaitement situé sur Carrer Pablo Picasso, au cœur d\'Eivissa.',
-      pil3T:'Ambiance', pil3P:'Ibiza a l\'une des ambiances les plus vibrantes du monde. Nous recréons cet esprit dans notre communauté.',
-      galTag:'Galerie', galTitle:'Vivez l\'<em>expérience</em><br>Grace Club', galIG:'📸 Suivez-nous sur Instagram @clubgrace2.0ibiza',
-      expTag:'Expérience', expTitle:'Votre <em>expérience</em><br>au <span style="color:var(--gold-light)">Grace Club</span>',
-      exp1T:'Demandez votre adhésion', exp1P:'Remplissez le formulaire ou contactez-nous via WhatsApp.',
-      exp2T:'Découvrez notre sélection', exp2P:'Plus de 30 variétés premium sélectionnées par nos experts.',
-      exp3T:'Conseils personnalisés', exp3P:'Notre équipe vous guide sur les meilleures options.',
-      exp4T:'Profitez et connectez-vous', exp4P:'Un espace unique pour se détendre et vivre des événements exclusifs.',
-      revTag:'Communauté', revTitle:'Ce que disent<br>nos <em>membres</em>',
-      revSub:'4.5 · Plus de 4 541 avis Google',
-      rev1:'"Sans aucun doute le meilleur club cannabis d\'Ibiza."',
-      rev2:'"Atmosphère exclusive et détendue. L\'attention personnalisée était exceptionnelle."',
-      rev3:'"Grace Club est un endroit spécial. Qualité top, discrétion totale."',
-      ctaJoin:'Rejoindre le club',
-      contactTag:'Rejoindre le club', contactTitle:'Demandez votre <em>adhésion</em>',
-      contactSub:'Remplissez le formulaire et notre équipe vous contactera pour finaliser votre inscription.',
-      locTag:'Nous trouver', locTitle:'Visitez-nous à<br><em>Eivissa</em>',
-      hours:'Tous les jours · 09:00 – 03:00',
-      ctaH:'Prêt à rejoindre<br><em>Grace Weed Club</em>?',
-      ctaP:'Écrivez-nous sur WhatsApp et obtenez toutes vos réponses.',
-      ctaBtn:'💬 Contactez-nous sur WhatsApp',
-    },
-    ar: {
-      dir: 'rtl',
-      navAbout:'من نحن', navExp:'التجربة', navGallery:'معرض',
-      navReviews:'التقييمات', navLocation:'الموقع', navIG:'انستغرام', navJoin:'انضم',
-      heroBadge:'نادي خاص · 4,541 تقييم ⭐',
-      heroH1:'مرحباً بك في<br><em>Grace</em> <span class="gold">Weed</span> Club',
-      heroSub:'جمعية القنب المرجعية في إيبيزا. منتجات فاخرة، أجواء راقية ومجتمع حصري في قلب Platja d\'en Bossa.',
-      heroBtn1:'طلب العضوية', heroBtn2:'اكتشف المزيد',
-      statL1:'تقييمات جوجل', statL2:'أعضاء نشطون', statL3:'أصناف مميزة', statL4:'أيام في السنة',
-      aboutTag:'من نحن',
-      aboutTitle:'الجانب الأكثر <em>رقياً</em><br>للقنب في إيبيزا',
-      aboutP1:'يقع Grace Club 2.0 في Platja d\'en Bossa ويقدم تجربة قنب من الدرجة الأولى.',
-      aboutP2:'انضم إلى مجتمعنا واستمتع بالاستشارة الشخصية والفعاليات الحصرية.',
-      pilTag:'ركائزنا', pilTitle:'<em>الجودة، الموقع</em><br>والأجواء الرائعة',
-      pil1T:'الجودة', pil1P:'كل شيء يتم اختياره يدوياً من قبل فريق من الخبراء لضمان أعلى المعايير.',
-      pil2T:'الموقع', pil2P:'موقع مثالي في Carrer Pablo Picasso في قلب إيبيسا.',
-      pil3T:'الأجواء', pil3P:'إيبيزا لديها واحدة من أكثر الأجواء حيوية في العالم.',
-      galTag:'معرض الصور', galTitle:'عِش <em>تجربة</em><br>Grace Club', galIG:'📸 تابعنا على انستغرام @clubgrace2.0ibiza',
-      expTag:'التجربة', expTitle:'تجربتك في<br><em>Grace Club</em>',
-      exp1T:'اطلب عضويتك', exp1P:'املأ النموذج أو تواصل معنا عبر واتساب.',
-      exp2T:'اكتشف تشكيلتنا', exp2P:'أكثر من 30 صنفاً مميزاً مختاراً من قبل خبرائنا.',
-      exp3T:'استشارة شخصية', exp3P:'فريقنا يوجهك نحو أفضل الخيارات وفق تفضيلاتك.',
-      exp4T:'استمتع وتواصل', exp4P:'مساحة فريدة للاسترخاء وحضور الفعاليات الحصرية.',
-      revTag:'المجتمع', revTitle:'ما يقوله<br><em>أعضاؤنا</em>',
-      revSub:'4.5 · أكثر من 4,541 تقييم على جوجل',
-      rev1:'"بلا شك أفضل نادي قنب في إيبيزا."',
-      rev2:'"أجواء حصرية ومريحة. الاهتمام الشخصي كان استثنائياً."',
-      rev3:'"Grace Club مكان مميز. جودة عالية، تكتم تام."',
-      ctaJoin:'انضم للنادي',
-      contactTag:'انضم للنادي', contactTitle:'اطلب <em>عضويتك</em>',
-      contactSub:'املأ النموذج وسيتصل بك فريقنا لإتمام التسجيل.',
-      locTag:'جدنا', locTitle:'زرنا في<br><em>إيبيسا</em>',
-      hours:'كل يوم · 09:00 – 03:00',
-      ctaH:'مستعد للانضمام إلى<br><em>Grace Weed Club</em>؟',
-      ctaP:'راسلنا على واتساب وستحصل على إجابات لجميع أسئلتك.',
-      ctaBtn:'💬 تواصل معنا عبر واتساب',
-    }
-  };
-
-  let currentLang = 'es';
-
-  function setLang(lang) {
-    currentLang = lang;
-    const t = translations[lang];
-    document.documentElement.dir = t.dir;
-    document.documentElement.lang = lang;
-
-    const navLis = document.querySelectorAll('#navLinks li a');
-    const navKeys = ['navAbout','navExp','navGallery','navReviews','navLocation','navIG','navJoin'];
-    navLis.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
-
-    document.querySelector('.hero-badge').innerHTML = t.heroBadge;
-    document.querySelector('.hero h1').innerHTML = t.heroH1;
-    document.querySelector('.hero-sub').textContent = t.heroSub;
-    const heroBtns = document.querySelectorAll('.hero-actions a');
-    if (heroBtns[0]) heroBtns[0].innerHTML = t.heroBtn1;
-    if (heroBtns[1]) heroBtns[1].textContent = t.heroBtn2;
-
-    const statLabels = document.querySelectorAll('.stat-label');
-    [t.statL1,t.statL2,t.statL3,t.statL4].forEach((l,i) => { if(statLabels[i]) statLabels[i].textContent = l; });
-
-    const aboutTag = document.querySelector('.about .section-tag');
-    if(aboutTag) aboutTag.innerHTML = aboutTag.innerHTML.replace(/[^─\s].+/, t.aboutTag);
-    const aboutTitle = document.querySelector('.about .section-title');
-    if(aboutTitle) aboutTitle.innerHTML = t.aboutTitle;
-    const aboutPs = document.querySelectorAll('.about-content > div p');
-    if(aboutPs[0]) aboutPs[0].textContent = t.aboutP1;
-    if(aboutPs[1]) aboutPs[1].textContent = t.aboutP2;
-
-    const pilTag = document.querySelector('.pillars .section-tag');
-    if(pilTag) pilTag.innerHTML = pilTag.innerHTML.replace(/\S.+/, t.pilTag);
-    const pilTitle = document.querySelector('.pillars .section-title');
-    if(pilTitle) pilTitle.innerHTML = t.pilTitle;
-    const pilH3s = document.querySelectorAll('.pillar h3');
-    const pilPs = document.querySelectorAll('.pillar p');
-    [[t.pil1T,t.pil1P],[t.pil2T,t.pil2P],[t.pil3T,t.pil3P]].forEach(([h,p],i) => {
-      if(pilH3s[i]) pilH3s[i].textContent = h;
-      if(pilPs[i]) pilPs[i].textContent = p;
-    });
-
-    const galTag = document.querySelector('.gallery .section-tag');
-    if(galTag) galTag.innerHTML = galTag.innerHTML.replace(/\S.+/, t.galTag);
-    const galTitle = document.querySelector('.gallery .section-title');
-    if(galTitle) galTitle.innerHTML = t.galTitle;
-    const galIG = document.querySelector('.gallery-ig');
-    if(galIG) galIG.textContent = t.galIG;
-
-    const expTag = document.querySelector('.experience .section-tag');
-    if(expTag) expTag.innerHTML = expTag.innerHTML.replace(/\S.+/, t.expTag);
-    const expTitle = document.querySelector('.experience .section-title');
-    if(expTitle) expTitle.innerHTML = t.expTitle;
-    const expStrongs = document.querySelectorAll('.exp-content strong');
-    const expPPs = document.querySelectorAll('.exp-content p');
-    [[t.exp1T,t.exp1P],[t.exp2T,t.exp2P],[t.exp3T,t.exp3P],[t.exp4T,t.exp4P]].forEach(([s,p],i) => {
-      if(expStrongs[i]) expStrongs[i].textContent = s;
-      if(expPPs[i]) expPPs[i].textContent = p;
-    });
-
-    const revTag = document.querySelector('.reviews .section-tag');
-    if(revTag) revTag.textContent = t.revTag;
-    const revTitle = document.querySelector('.reviews .section-title');
-    if(revTitle) revTitle.innerHTML = t.revTitle;
-    const revSub = document.querySelector('.reviews-sub');
-    if(revSub) revSub.innerHTML = `<span class="stars">★★★★★</span> ${t.revSub}`;
-    const revTexts = document.querySelectorAll('.review-text');
-    [t.rev1,t.rev2,t.rev3].forEach((r,i) => { if(revTexts[i]) revTexts[i].textContent = r; });
-    const rgcCta = document.querySelector('.rgc-cta');
-    if(rgcCta) rgcCta.textContent = t.ctaJoin;
-
-    const contactTag = document.querySelector('.contact .section-tag');
-    if(contactTag) contactTag.innerHTML = contactTag.innerHTML.replace(/\S.+/, t.contactTag);
-    const contactTitle = document.querySelector('.contact .section-title');
-    if(contactTitle) contactTitle.innerHTML = t.contactTitle;
-    const contactSub = document.querySelector('.contact-inner > p');
-    if(contactSub) contactSub.textContent = t.contactSub;
-
-    const locTag = document.querySelector('.location-info .section-tag');
-    if(locTag) locTag.innerHTML = locTag.innerHTML.replace(/\S.+/, t.locTag);
-    const locTitle = document.querySelector('.location-info .section-title');
-    if(locTitle) locTitle.innerHTML = t.locTitle;
-    const hoursRow = document.querySelector('.hours-row span:first-child');
-    const hoursVal = document.querySelector('.hours-row span:last-child');
-    if(hoursRow) hoursRow.textContent = t.hours.split('·')[0].trim();
-    if(hoursVal) hoursVal.textContent = t.hours.split('·')[1].trim();
-
-    const ctaH = document.querySelector('.cta-strip h2');
-    if(ctaH) ctaH.innerHTML = t.ctaH;
-    const ctaP = document.querySelector('.cta-strip p');
-    if(ctaP) ctaP.textContent = t.ctaP;
-    const ctaBtn = document.querySelector('.btn-dark');
-    if(ctaBtn) ctaBtn.textContent = t.ctaBtn;
-
-    document.querySelectorAll('.lang-option').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('onclick').includes(`'${lang}'`));
-    });
-
-    langOpen = false;
-    document.getElementById('langOptions').classList.remove('open');
-  }
+});
+function closeLightbox(){ document.getElementById('lightbox').classList.remove('active'); }
+document.getElementById('lightbox').addEventListener('click', e => { if(e.target===e.currentTarget) closeLightbox(); });
 </script>
 </body>
 </html>
